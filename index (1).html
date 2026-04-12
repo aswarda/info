@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aswarda Chari Vadlamani | Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--bg2:#080f1f;--bg3:#0d1a35;--card:#0f1e38;
+  --cyan:#22d3ee;--cyan2:#0891b2;--violet:#a78bfa;--violet2:#7c3aed;
+  --emerald:#34d399;--amber:#fbbf24;--rose:#f43f5e;
+  --text:#f0f6ff;--text2:#94a3b8;--text3:#475569;
+  --border:rgba(34,211,238,0.1);--border2:rgba(34,211,238,0.22);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 900px 700px at 15% 5%,rgba(34,211,238,0.04) 0%,transparent 65%),radial-gradient(ellipse 700px 600px at 85% 85%,rgba(124,58,237,0.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:rgba(3,7,18,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 6%}
+.nb{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);letter-spacing:.12em}
+.nl{display:flex;gap:28px;list-style:none}
+.nl a{font-size:12px;color:var(--text2);text-decoration:none;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nl a:hover{color:var(--cyan)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 6%;position:relative;z-index:1}
+.sec{padding:96px 6%;position:relative;z-index:1}
+.sec-alt{background:var(--bg2)}
+.slbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:.25em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.slbl::before{content:'';width:20px;height:1px;background:var(--cyan)}
+.sh{font-family:'Outfit',sans-serif;font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;margin-bottom:52px;line-height:1.1}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 6% 60px;position:relative;z-index:1}
+.hero-c{max-width:800px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.18em;text-transform:uppercase;margin-bottom:28px;background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.16);padding:6px 16px}
+.edot{width:6px;height:6px;border-radius:50%;background:var(--emerald);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-size:clamp(52px,8vw,100px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:20px}
+.nm{color:var(--text);display:block}
+.no{color:transparent;-webkit-text-stroke:1.5px rgba(34,211,238,.35);display:block}
+.role{font-size:clamp(16px,2.5vw,22px);font-weight:500;color:var(--cyan);margin-bottom:20px;letter-spacing:.02em}
+.bio{font-size:16px;color:var(--text2);max-width:640px;margin-bottom:36px;line-height:1.8;font-weight:300}
+.hmeta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+.chip{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:.05em;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:6px 14px}
+.hstats{display:flex;gap:48px;flex-wrap:wrap;margin-bottom:48px}
+.sv{font-family:'Outfit',sans-serif;font-size:42px;font-weight:900;color:var(--cyan);line-height:1;letter-spacing:-.02em;display:block}
+.sl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;margin-top:6px;font-family:'JetBrains Mono',monospace;display:block}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap}
+.bc{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:var(--cyan);color:#030712;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.bc:hover{background:#fff;transform:translateY(-2px)}
+.bo{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1px solid var(--border2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.bo:hover{border-color:var(--cyan);color:var(--cyan)}
+/* DEVOPS */
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dc{background:var(--card);border:1px solid var(--border);padding:28px 30px;position:relative;overflow:hidden;transition:all .3s}
+.dc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--violet));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dc:hover::after{transform:scaleX(1)}
+.dc:hover{border-color:var(--border2);transform:translateY(-3px)}
+.dch{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.dci{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.dci.c{background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,.2)}
+.dci.v{background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,.2)}
+.dci.e{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,.2)}
+.dci.a{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,.2)}
+.dci.r{background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,.2)}
+.dct{font-size:17px;font-weight:700;margin-bottom:2px}
+.dcs{font-size:12px;color:var(--text2);font-family:'JetBrains Mono',monospace}
+.dcp{list-style:none;display:flex;flex-direction:column;gap:8px}
+.dcp li{font-size:13.5px;color:var(--text2);padding-left:16px;position:relative;line-height:1.5}
+.dcp li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:11px;top:2px}
+.dtags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.t{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border:1px solid;letter-spacing:.04em}
+.tc{border-color:rgba(34,211,238,.25);color:rgba(34,211,238,.85)}
+.tv{border-color:rgba(167,139,250,.25);color:rgba(167,139,250,.85)}
+.te{border-color:rgba(52,211,153,.25);color:rgba(52,211,153,.85)}
+.ta{border-color:rgba(251,191,36,.25);color:rgba(251,191,36,.85)}
+.tr{border-color:rgba(244,63,94,.25);color:rgba(244,63,94,.85)}
+/* AWS */
+.aws-layout{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+.aws-sb{display:flex;flex-direction:column;gap:10px}
+.aws-btn{padding:14px 18px;background:var(--card);border:1px solid var(--border);cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;transition:all .2s;width:100%}
+.aws-btn.on,.aws-btn:hover{border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.05)}
+.aws-btn.on .arr{color:var(--amber)}
+.cname{font-size:14px;font-weight:600;color:var(--text);display:block}
+.csub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.06em;display:block;margin-top:3px}
+.arr{color:var(--text3);transition:color .2s;font-size:16px}
+.aws-detail{background:var(--card);border:1px solid var(--border);padding:28px}
+.aws-dh{display:flex;align-items:center;gap:16px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.aws-logo{width:48px;height:48px;background:linear-gradient(135deg,#ff9900,#ffb732);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#0f0f0f;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.aws-dt{font-size:20px;font-weight:700}
+.aws-ds{font-size:13px;color:var(--text2);margin-top:3px}
+.aws-sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
+.aws-s{background:var(--bg);border:1px solid var(--border);padding:14px 15px;transition:all .2s}
+.aws-s:hover{border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.03)}
+.aws-sn{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);font-weight:600;margin-bottom:4px}
+.aws-sd{font-size:12px;color:var(--text2);line-height:1.45}
+/* CLOUD TWO */
+.ctwo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cblk{background:var(--card);border:1px solid var(--border);padding:32px}
+.cbh{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.cbadge{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.gb{background:linear-gradient(135deg,#4285f4,#34a853,#fbbc05,#ea4335);color:#fff}
+.ab{background:linear-gradient(135deg,#0078d4,#50e6ff);color:#fff}
+.cbn{font-size:20px;font-weight:700}
+.cbns{font-size:13px;color:var(--text2);margin-top:2px}
+.ccats{display:flex;flex-direction:column;gap:14px}
+.cclbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.cpills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:12px;padding:5px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--text2);transition:all .2s}
+.pill:hover{border-color:var(--border2);color:var(--text)}
+.pb{background:rgba(66,133,244,.08);border-color:rgba(66,133,244,.22);color:rgba(96,165,250,.9)}
+.pa{background:rgba(0,120,212,.08);border-color:rgba(0,120,212,.22);color:rgba(56,189,248,.9)}
+/* CROSSPLANE */
+.xlay{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.xflow{background:var(--card);border:1px solid var(--border);padding:30px;grid-column:span 2}
+.xft{font-size:15px;font-weight:700;margin-bottom:22px;color:var(--emerald);font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+.xsteps{display:flex;gap:0;align-items:stretch}
+.xst{flex:1;padding:18px 14px;background:var(--bg);border:1px solid var(--border);position:relative}
+.xst:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--emerald);font-size:14px;z-index:2}
+.xsn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--emerald);letter-spacing:.15em;margin-bottom:7px}
+.xstitle{font-size:13px;font-weight:700;margin-bottom:4px}
+.xsd{font-size:11px;color:var(--text2);line-height:1.4}
+.xcard{background:var(--card);border:1px solid var(--border);padding:26px;transition:all .3s}
+.xcard:hover{border-color:rgba(52,211,153,.3)}
+.xch{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.xdot{width:10px;height:10px;border-radius:50%;background:var(--emerald);flex-shrink:0}
+.xct{font-size:16px;font-weight:700}
+.xl{list-style:none;display:flex;flex-direction:column;gap:8px}
+.xl li{font-size:13px;color:var(--text2);padding-left:16px;position:relative;line-height:1.5}
+.xl li::before{content:'▸';position:absolute;left:0;color:var(--emerald);font-size:11px;top:1px}
+/* EXP */
+.ewrap{max-width:860px}
+.ei{position:relative;padding-left:48px;margin-bottom:60px}
+.ei::before{content:'';position:absolute;left:14px;top:0;bottom:-60px;width:1px;background:linear-gradient(to bottom,var(--cyan),var(--violet),transparent)}
+.ei:last-child::before{bottom:0}
+.edotx{position:absolute;left:8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(34,211,238,.15),0 0 16px rgba(34,211,238,.3)}
+.eper{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.1em;margin-bottom:8px}
+.erole{font-size:24px;font-weight:800;margin-bottom:4px;letter-spacing:-.01em}
+.eco{font-size:14px;color:var(--text2);margin-bottom:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ecobadge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 10px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.16);color:var(--cyan)}
+.epts{list-style:none;display:flex;flex-direction:column;gap:9px}
+.epts li{font-size:14px;color:var(--text2);padding-left:18px;position:relative;line-height:1.6}
+.epts li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:11px;top:3px}
+.etags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+/* CONTACT */
+.clay{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.avail{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border:1px solid rgba(52,211,153,.3);color:var(--emerald);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:26px}
+.adot{width:6px;height:6px;border-radius:50%;background:var(--emerald);animation:blink 2s infinite}
+.cintro{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:28px}
+.clinks{display:flex;flex-direction:column;gap:12px}
+.clink{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--card);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all .2s}
+.clink:hover{border-color:rgba(34,211,238,.3);transform:translateX(4px)}
+.clico{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cllbl{font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.clval{font-size:14px;margin-top:2px}
+.stbl{width:100%;border-collapse:collapse}
+.stbl tr{border-bottom:1px solid var(--border)}
+.stbl td{padding:13px 0;vertical-align:top}
+.stbl td:first-child{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;width:150px;padding-right:20px;padding-top:15px}
+.stbl td:last-child{font-size:13.5px;color:var(--text2)}
+footer{padding:30px 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+footer p{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)}
+.fade{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.fade.in{opacity:1;transform:none}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--violet2)}
+@media(max-width:900px){
+  .dgrid,.aws-layout,.ctwo,.xlay,.clay{grid-template-columns:1fr}
+  .xflow{grid-column:span 1}
+  .xsteps{flex-wrap:wrap}
+  .xst::after{display:none}
+  .nl{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nb">ACV // PORTFOLIO</div>
+  <ul class="nl">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#devops">DevOps</a></li>
+    <li><a href="#aws">AWS</a></li>
+    <li><a href="#multicloud">GCP & Azure</a></li>
+    <li><a href="#crossplane">Crossplane</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-c">
+    <div class="eyebrow"><span class="edot"></span>Available for new opportunities</div>
+    <h1>
+      <span class="nm">Aswarda Chari</span>
+      <span class="no">Vadlamani</span>
+    </h1>
+    <div class="role">Cloud &amp; DevOps Engineer &nbsp;·&nbsp; Platform Engineering &nbsp;·&nbsp; GitOps</div>
+    <p class="bio">Results-driven engineer with <strong>4.3 years</strong> designing, deploying, and automating scalable cloud-native infrastructure. Expert in AWS, GCP, Azure, Kubernetes, Crossplane, and end-to-end GitOps pipelines across multi-cloud environments.</p>
+    <div class="hmeta">
+      <div class="chip">📍 India</div>
+      <div class="chip">🎓 BSc · CGPA 9.19 · ANU University 2019</div>
+      <div class="chip">🗣 English · Telugu · Hindi</div>
+      <div class="chip">🌐 Open to Remote &amp; Hybrid</div>
+    </div>
+    <div class="hstats">
+      <div><span class="sv">4.3</span><span class="sl">Years Exp.</span></div>
+      <div><span class="sv">3</span><span class="sl">Cloud Platforms</span></div>
+      <div><span class="sv">20+</span><span class="sl">AWS Services</span></div>
+      <div><span class="sv">2</span><span class="sl">Companies</span></div>
+    </div>
+    <div class="hbtns">
+      <a href="mailto:aswardavadlamani45@gmail.com" class="bc">✉ Hire Me</a>
+      <a href="https://www.linkedin.com/in/aswardavadlamani" target="_blank" class="bo">↗ LinkedIn</a>
+      <a href="tel:+919014008541" class="bo">✆ +91 9014008541</a>
+    </div>
+  </div>
+</section>
+
+<!-- DEVOPS -->
+<section class="sec sec-alt" id="devops">
+  <div class="wrap">
+    <div class="slbl">Core Expertise</div>
+    <h2 class="sh">DevOps Engineering</h2>
+    <div class="dgrid">
+
+      <div class="dc fade">
+        <div class="dch"><div class="dci v">🔄</div><div><div class="dct">CI/CD Pipelines</div><div class="dcs">Jenkins · GitHub Actions · CodePipeline</div></div></div>
+        <ul class="dcp">
+          <li>Architected highly available Jenkins-on-Kubernetes with dynamic PodTemplate agent pods — horizontal scalability and build isolation</li>
+          <li>Designed pipelines for Java/Tomcat, Golang, Docker, Node.js apps ensuring consistent multi-environment delivery</li>
+          <li>Built GitHub Actions CI/CD for Kubernetes workloads — image build, push to ECR/GCR/ACR, and auto-deploy</li>
+          <li>Integrated pipelines with Slack, Email, and MS Teams for real-time notifications</li>
+          <li>Designed and implemented rollback &amp; recovery strategies for zero-downtime deployments</li>
+        </ul>
+        <div class="dtags"><span class="t tv">Jenkins</span><span class="t tv">GitHub Actions</span><span class="t tv">Azure DevOps</span><span class="t tv">AWS CodePipeline</span><span class="t tv">Bitbucket</span></div>
+      </div>
+
+      <div class="dc fade">
+        <div class="dch"><div class="dci c">🚀</div><div><div class="dct">GitOps &amp; ArgoCD</div><div class="dcs">Declarative · Drift Detection · Self-Heal</div></div></div>
+        <ul class="dcp">
+          <li>Implemented GitOps-based Kubernetes deployments using ArgoCD — fully declarative, version-controlled management</li>
+          <li>Configured ArgoCD auto-sync, self-heal, and prune policies for continuous deployment on Git changes</li>
+          <li>Implemented RBAC in ArgoCD for fine-grained access control across teams and namespaces</li>
+          <li>Integrated ArgoCD with CI pipelines to automate testing, image builds, and Kubernetes rollouts on Git events</li>
+          <li>Monitored app health, tracked deployment history, and troubleshot drift using ArgoCD CLI and UI</li>
+        </ul>
+        <div class="dtags"><span class="t tc">ArgoCD</span><span class="t tc">Flux CD</span><span class="t tc">GitOps</span><span class="t tc">RBAC</span><span class="t tc">Auto-sync</span><span class="t tc">Self-Heal</span></div>
+      </div>
+
+      <div class="dc fade">
+        <div class="dch"><div class="dci e">🐳</div><div><div class="dct">Containers &amp; Kubernetes</div><div class="dcs">Docker · EKS · GKE · AKS</div></div></div>
+        <ul class="dcp">
+          <li>Managed Kubernetes deployments across namespaces with RBAC, security boundaries, and resource quotas</li>
+          <li>Deployed Docker-based applications via Jenkins maintaining parity across dev, staging, and production</li>
+          <li>Managed AWS ECS deployments — task definitions, environment vars, and host-level configurations</li>
+          <li>Pushed and pulled container images across AWS ECR, GCP Artifact Registry, and Azure ACR</li>
+          <li>Optimized Golang container images and delivery pipelines for reduced image size</li>
+        </ul>
+        <div class="dtags"><span class="t te">Kubernetes</span><span class="t te">Docker</span><span class="t te">ECS</span><span class="t te">ECR</span><span class="t te">Helm</span><span class="t te">PodTemplates</span></div>
+      </div>
+
+      <div class="dc fade">
+        <div class="dch"><div class="dci r">🛡️</div><div><div class="dct">DevSecOps</div><div class="dcs">Trivy · SonarQube · Snyk</div></div></div>
+        <ul class="dcp">
+          <li>Integrated Trivy, SonarQube, and Snyk into Jenkins pipelines — enforcing security scanning and quality gates before every deployment</li>
+          <li>Implemented static code analysis and container image vulnerability scanning as mandatory stages</li>
+          <li>Configured pipeline-level policies to block deployments failing security thresholds</li>
+          <li>Maintained audit trails for compliance through Git-based infrastructure management</li>
+        </ul>
+        <div class="dtags"><span class="t tr">Trivy</span><span class="t tr">SonarQube</span><span class="t tr">Snyk</span><span class="t tr">SAST</span><span class="t tr">Image Scanning</span></div>
+      </div>
+
+      <div class="dc fade">
+        <div class="dch"><div class="dci a">📊</div><div><div class="dct">Monitoring &amp; Observability</div><div class="dcs">Grafana · Prometheus · CloudWatch</div></div></div>
+        <ul class="dcp">
+          <li>Implemented Grafana &amp; Prometheus monitoring and alerting for proactive issue detection across systems</li>
+          <li>Configured CloudWatch alarms, monitors, and SNS notifications for EC2, RDS, ELB</li>
+          <li>Daily health checks using Nagios and Site24x7 for server status and performance</li>
+          <li>Monitored GuardDuty alerts for suspicious activities and security threats</li>
+          <li>Set up CloudWatch agent for memory utilization and log file alerting on EC2</li>
+        </ul>
+        <div class="dtags"><span class="t ta">Grafana</span><span class="t ta">Prometheus</span><span class="t ta">CloudWatch</span><span class="t ta">Nagios</span><span class="t ta">Site24x7</span><span class="t ta">GuardDuty</span></div>
+      </div>
+
+      <div class="dc fade">
+        <div class="dch"><div class="dci c">⚙️</div><div><div class="dct">Infrastructure as Code</div><div class="dcs">Terraform · Ansible · Shell Script</div></div></div>
+        <ul class="dcp">
+          <li>Developed Terraform modules for AWS (EC2, VPC, IAM, RDS, EKS) and GCP (GKE, CloudSQL, IAM, VPC)</li>
+          <li>Managed Terraform state via S3 + DynamoDB backend and Terraform Cloud with env-based workspaces</li>
+          <li>Implemented Terraform pipelines in Jenkins/GitHub Actions with validate, plan, apply, and security checks</li>
+          <li>Configured Ansible playbooks for consistent, repeatable server provisioning across environments</li>
+          <li>Developed Shell scripts for build automation, system maintenance, and custom notifications</li>
+        </ul>
+        <div class="dtags"><span class="t tc">Terraform</span><span class="t tc">Ansible</span><span class="t tc">Shell Script</span><span class="t tc">Python</span><span class="t tc">Terraform Cloud</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AWS -->
+<section class="sec" id="aws">
+  <div class="wrap">
+    <div class="slbl">Amazon Web Services</div>
+    <h2 class="sh">AWS Deep Expertise</h2>
+    <div class="aws-layout">
+      <div class="aws-sb" id="awsSB">
+        <button class="aws-btn on" onclick="showAWS('compute')" data-c="compute">
+          <span><span class="cname">Compute</span><span class="csub">EC2, ECS, EKS, Lambda</span></span><span class="arr">→</span>
+        </button>
+        <button class="aws-btn" onclick="showAWS('network')" data-c="network">
+          <span><span class="cname">Networking</span><span class="csub">VPC, ELB, Route53, CloudFront</span></span><span class="arr">→</span>
+        </button>
+        <button class="aws-btn" onclick="showAWS('storage')" data-c="storage">
+          <span><span class="cname">Storage &amp; Database</span><span class="csub">S3, RDS, EBS, EFS, ECR</span></span><span class="arr">→</span>
+        </button>
+        <button class="aws-btn" onclick="showAWS('security')" data-c="security">
+          <span><span class="cname">Security &amp; Identity</span><span class="csub">IAM, GuardDuty, ACM, MFA</span></span><span class="arr">→</span>
+        </button>
+        <button class="aws-btn" onclick="showAWS('devtools')" data-c="devtools">
+          <span><span class="cname">Dev &amp; Automation</span><span class="csub">CodePipeline, CloudWatch, SES</span></span><span class="arr">→</span>
+        </button>
+      </div>
+      <div class="aws-detail" id="awsD">
+        <div class="aws-dh">
+          <div class="aws-logo" id="awsLogo">EC2</div>
+          <div><div class="aws-dt" id="awsTitle">Compute Services</div><div class="aws-ds" id="awsSub">Virtual machines, containers, and serverless</div></div>
+        </div>
+        <div class="aws-sg" id="awsGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GCP + AZURE -->
+<section class="sec sec-alt" id="multicloud">
+  <div class="wrap">
+    <div class="slbl">Multi-Cloud</div>
+    <h2 class="sh">GCP &amp; Azure</h2>
+    <div class="ctwo">
+
+      <div class="cblk fade">
+        <div class="cbh">
+          <div class="cbadge gb">GCP</div>
+          <div><div class="cbn">Google Cloud Platform</div><div class="cbns">Compute · Kubernetes · Storage · Networking</div></div>
+        </div>
+        <div class="ccats">
+          <div><div class="cclbl">Compute &amp; Containers</div><div class="cpills"><span class="pill pb">GKE Clusters</span><span class="pill pb">Compute Engine VMs</span><span class="pill pb">App Engine</span><span class="pill pb">Machine Images</span><span class="pill pb">Persistent Disks</span></div></div>
+          <div><div class="cclbl">Storage &amp; Database</div><div class="cpills"><span class="pill pb">Cloud Storage (GCS)</span><span class="pill pb">Cloud SQL</span><span class="pill pb">Snapshots</span><span class="pill pb">Container Registry</span><span class="pill pb">Artifact Registry</span></div></div>
+          <div><div class="cclbl">Networking &amp; Security</div><div class="cpills"><span class="pill pb">VPC &amp; Subnets</span><span class="pill pb">Load Balancing</span><span class="pill pb">Cloud Armor</span><span class="pill pb">IAM</span><span class="pill pb">VNC Config</span></div></div>
+          <div><div class="cclbl">Operations &amp; Automation</div><div class="cpills"><span class="pill pb">Cloud Functions</span><span class="pill pb">Cloud Scheduler</span><span class="pill pb">Elasticsearch Backup</span><span class="pill pb">gcloud CLI</span></div></div>
+        </div>
+      </div>
+
+      <div class="cblk fade">
+        <div class="cbh">
+          <div class="cbadge ab">AZ</div>
+          <div><div class="cbn">Microsoft Azure</div><div class="cbns">VMs · AKS · Networking · Storage · IaC</div></div>
+        </div>
+        <div class="ccats">
+          <div><div class="cclbl">Compute &amp; Kubernetes</div><div class="cpills"><span class="pill pa">Azure VMs</span><span class="pill pa">AKS Clusters</span><span class="pill pa">Node Pools</span><span class="pill pa">VM Scale Sets</span></div></div>
+          <div><div class="cclbl">Storage &amp; Databases</div><div class="cpills"><span class="pill pa">Storage Accounts</span><span class="pill pa">Azure Blob</span><span class="pill pa">Azure Databases</span><span class="pill pa">ACR</span><span class="pill pa">Proxy Cache</span></div></div>
+          <div><div class="cclbl">Networking</div><div class="cpills"><span class="pill pa">VNets &amp; Subnets</span><span class="pill pa">Route Tables</span><span class="pill pa">NAT Gateway</span><span class="pill pa">Internet Gateways</span><span class="pill pa">NSGs</span></div></div>
+          <div><div class="cclbl">IaC &amp; Automation</div><div class="cpills"><span class="pill pa">ARM Templates</span><span class="pill pa">Azure DevOps Pipelines</span><span class="pill pa">User-Data Scripts</span><span class="pill pa">Bootstrap Configs</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CROSSPLANE -->
+<section class="sec" id="crossplane">
+  <div class="wrap">
+    <div class="slbl">Platform Engineering</div>
+    <h2 class="sh">Crossplane &amp; GitOps Platform</h2>
+    <div class="xlay">
+
+      <div class="xflow fade">
+        <div class="xft">▸ GitOps Continuous Delivery Workflow</div>
+        <div class="xsteps">
+          <div class="xst"><div class="xsn">STEP 01</div><div class="xstitle">Define XRD</div><div class="xsd">Author Composite Resource Definitions as YAML in Git</div></div>
+          <div class="xst"><div class="xsn">STEP 02</div><div class="xstitle">Commit</div><div class="xsd">Push infra changes to Git repository for review</div></div>
+          <div class="xst"><div class="xsn">STEP 03</div><div class="xstitle">ArgoCD Sync</div><div class="xsd">ArgoCD auto-deploys to Kubernetes cluster</div></div>
+          <div class="xst"><div class="xsn">STEP 04</div><div class="xstitle">Provision</div><div class="xsd">Crossplane creates real cloud resources on AWS/GCP</div></div>
+          <div class="xst"><div class="xsn">STEP 05</div><div class="xstitle">Reconcile</div><div class="xsd">Continuous state management — drift auto-corrected</div></div>
+        </div>
+      </div>
+
+      <div class="xcard fade">
+        <div class="xch"><div class="xdot"></div><div class="xct">Crossplane Platform (Deloitte)</div></div>
+        <ul class="xl">
+          <li>Designed XRDs and Compositions for reusable, product-grade infrastructure abstractions for internal platforms</li>
+          <li>Automated cloud resource provisioning via Crossplane Managed Resources (MRs) for AWS, GCP, and enterprise providers</li>
+          <li>Set up centralized Crossplane control plane for multiple customers with secure provider configs, RBAC, and GitOps</li>
+          <li>Implemented end-to-end GitOps CD using Flux/ArgoCD integrated with Crossplane for fully declarative infra</li>
+          <li>Troubleshot complex Crossplane issues — provider health, compositions, claim lifecycle, and package upgrades</li>
+        </ul>
+        <div class="dtags" style="margin-top:14px"><span class="t te">XRDs</span><span class="t te">Compositions</span><span class="t te">Managed Resources</span><span class="t te">Provider Configs</span><span class="t te">Control Plane</span></div>
+      </div>
+
+      <div class="xcard fade">
+        <div class="xch"><div class="xdot"></div><div class="xct">Self-Service Infrastructure Platform</div></div>
+        <ul class="xl">
+          <li>Enabled developer self-service for cloud provisioning without direct cloud console access — using composable abstractions</li>
+          <li>Enforced security, compliance, and cost policies baked into every Composition, applied automatically</li>
+          <li>Managed multi-tenant isolation with namespace-based Crossplane claims and RBAC policies per team</li>
+          <li>Eliminated vendor lock-in with a unified control plane managing AWS, GCP, and Azure resources</li>
+          <li>Maintained high availability through automated Crossplane provider health checks and package upgrades</li>
+        </ul>
+        <div class="dtags" style="margin-top:14px"><span class="t te">Self-Service</span><span class="t te">Multi-Tenant</span><span class="t te">Policy Enforcement</span><span class="t te">Multi-Cloud</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec sec-alt" id="experience">
+  <div class="wrap">
+    <div class="slbl">Career</div>
+    <h2 class="sh">Work Experience</h2>
+    <div class="ewrap">
+
+      <div class="ei fade">
+        <div class="edotx"></div>
+        <div class="eper">CURRENT ROLE · 1.4 YEARS</div>
+        <div class="erole">CAAS Engineer</div>
+        <div class="eco">Deloitte Shared Services India LLP <span class="ecobadge">Platform Engineering</span></div>
+        <ul class="epts">
+          <li>Designed and developed Crossplane XRDs and Compositions for reusable, product-grade infrastructure abstractions</li>
+          <li>Set up centralized Crossplane control plane for multiple customers with secure provider configs and RBAC</li>
+          <li>Implemented end-to-end GitOps CD using Flux/ArgoCD integrated with Crossplane for fully declarative infra management</li>
+          <li>Architected highly available Jenkins-on-Kubernetes with dynamic PodTemplate agents for horizontal scalability</li>
+          <li>Integrated DevSecOps tooling — Trivy, SonarQube, Snyk — enforcing security gates across all CI/CD pipelines</li>
+          <li>Automated cloud service provisioning by orchestrating Crossplane Managed Resources for AWS and GCP</li>
+        </ul>
+        <div class="etags"><span class="t tc">Crossplane</span><span class="t tc">Kubernetes</span><span class="t tc">ArgoCD</span><span class="t tc">Flux</span><span class="t tc">Jenkins</span><span class="t tc">Trivy</span><span class="t tc">SonarQube</span><span class="t tc">AWS</span><span class="t tc">GCP</span></div>
+      </div>
+
+      <div class="ei fade">
+        <div class="edotx" style="background:var(--violet);box-shadow:0 0 0 4px rgba(167,139,250,.15),0 0 16px rgba(167,139,250,.3)"></div>
+        <div class="eper" style="color:var(--violet)">PREVIOUS ROLE · 2.9 YEARS</div>
+        <div class="erole">DevOps Engineer</div>
+        <div class="eco">Log-UsIMS Technologies Pvt. Ltd. <span class="ecobadge" style="border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.06);color:var(--violet)">DevOps</span></div>
+        <ul class="epts">
+          <li>Designed and optimized Jenkins pipelines for Java/Tomcat, Golang, and Docker-based multi-environment deployments</li>
+          <li>Implemented GitOps-based Kubernetes deployments using ArgoCD with auto-sync, self-heal, and prune policies</li>
+          <li>Managed comprehensive AWS infrastructure: VPC, EC2, ECS, RDS, S3, IAM, CloudFront, Route53, ELB, GuardDuty, and more</li>
+          <li>Developed Terraform modules for AWS and GCP with S3+DynamoDB state backend and environment workspaces</li>
+          <li>Configured Grafana, Prometheus, and Nagios monitoring with alerting across all production systems</li>
+          <li>Managed GCP: GKE clusters, Compute Engine, Cloud SQL, App Engine, Cloud Armor, and Cloud Scheduler</li>
+          <li>Provided L2/L3 support, SOP development, and 24/7 on-call coverage for production environments</li>
+        </ul>
+        <div class="etags"><span class="t tv">Jenkins</span><span class="t tv">ArgoCD</span><span class="t tv">Terraform</span><span class="t tv">Ansible</span><span class="t tv">AWS</span><span class="t tv">GCP</span><span class="t tv">Docker</span><span class="t tv">Grafana</span><span class="t tv">Linux</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="slbl">Get In Touch</div>
+    <h2 class="sh">Let's Connect</h2>
+    <div class="clay">
+      <div>
+        <div class="avail"><span class="adot"></span>Open to new opportunities</div>
+        <p class="cintro">Looking for Cloud / DevOps / Platform Engineering roles. Passionate about Kubernetes-native infrastructure, GitOps, Crossplane, and multi-cloud automation. Let's build something impactful.</p>
+        <div class="clinks">
+          <a href="mailto:aswardavadlamani45@gmail.com" class="clink">
+            <div class="clico">✉</div>
+            <div><div class="cllbl">Email</div><div class="clval">aswardavadlamani45@gmail.com</div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/aswardavadlamani" target="_blank" class="clink">
+            <div class="clico">🔗</div>
+            <div><div class="cllbl">LinkedIn</div><div class="clval">linkedin.com/in/aswardavadlamani</div></div>
+          </a>
+          <a href="tel:+919014008541" class="clink">
+            <div class="clico">✆</div>
+            <div><div class="cllbl">Phone</div><div class="clval">+91 9014008541</div></div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <table class="stbl">
+          <tr><td>Cloud</td><td>AWS (4 yrs) · GCP · Azure</td></tr>
+          <tr><td>Containers</td><td>Kubernetes · Docker · ECS · EKS · GKE · AKS</td></tr>
+          <tr><td>CI/CD</td><td>Jenkins · ArgoCD · GitHub Actions · Flux · Azure DevOps</td></tr>
+          <tr><td>IaC</td><td>Crossplane · Terraform · Ansible · ARM Templates</td></tr>
+          <tr><td>Security</td><td>Trivy · SonarQube · Snyk · IAM · GuardDuty</td></tr>
+          <tr><td>Monitoring</td><td>Grafana · Prometheus · CloudWatch · Nagios · Site24x7</td></tr>
+          <tr><td>Scripting</td><td>Shell Script · Python · Go · Bash</td></tr>
+          <tr><td>OS / Infra</td><td>Linux (RHEL · CentOS · Ubuntu) · Windows · DNS</td></tr>
+          <tr><td>Education</td><td>BSc · ANU University · CGPA 9.19 · 2019</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Aswarda Chari Vadlamani · Cloud &amp; DevOps Engineer</p>
+  <p>Hosted free on GitHub Pages</p>
+</footer>
+
+<script>
+const awsData={
+  compute:{logo:'EC2',title:'Compute Services',sub:'Virtual machines, containers, and serverless workloads on AWS',services:[
+    {n:'EC2',d:'Launch &amp; configure Linux/Windows instances, AMIs, elastic IPs, spot instances, user data scripts'},
+    {n:'ECS',d:'Container deployments — task definitions, environment variables, host configs, ECR image integration'},
+    {n:'EKS',d:'Managed Kubernetes clusters for container-native production workloads'},
+    {n:'Lambda',d:'Serverless functions integrated with API Gateway (public &amp; private endpoints)'},
+    {n:'Auto Scaling',d:'Designing scalable infrastructure with Auto Scaling groups and launch configurations'},
+    {n:'AMI',d:'Custom AMIs, lifecycle policies, automated backups and snapshot scheduling'},
+    {n:'Spot Instances',d:'Cost optimization with Spot EC2, handling interruptions and resolving spot-related issues'},
+  ]},
+  network:{logo:'VPC',title:'Networking &amp; CDN',sub:'Virtual networks, load balancing, DNS, and content delivery',services:[
+    {n:'VPC',d:'Full VPC design — subnets, route tables, internet gateways, NAT gateways, bastion hosts'},
+    {n:'ELB / ALB',d:'Classic and Application Load Balancers, target groups, health checks, access logs to S3'},
+    {n:'Route53',d:'DNS record types, routing policies, domain-based email config via SES'},
+    {n:'CloudFront',d:'CDN setup, cache invalidations, HTTPS via ACM, custom origins, edge locations'},
+    {n:'NAT Gateway',d:'Private subnet internet access via NAT gateways and bastion host architecture'},
+    {n:'Security Groups',d:'Fine-grained inbound/outbound security rules, VPC-level security policies'},
+    {n:'API Gateway',d:'Public &amp; private API gateways integrated with AWS Lambda for serverless APIs'},
+  ]},
+  storage:{logo:'S3',title:'Storage &amp; Databases',sub:'Object storage, block storage, and managed database services',services:[
+    {n:'S3',d:'Bucket creation, restricted policies, lifecycle rules, static website hosting, SFTP via Transfer Service'},
+    {n:'RDS',d:'Instance and cluster creation, snapshots, restore, multi-AZ, PhpMyAdmin integration'},
+    {n:'EBS',d:'Volume provisioning, snapshot automation via CloudWatch events, attach/detach to EC2'},
+    {n:'EFS',d:'Shared elastic file system for Linux-based multi-instance workloads'},
+    {n:'ECR',d:'Container image registry, push/pull across accounts, image lifecycle policies'},
+    {n:'DynamoDB',d:'Used as Terraform state lock backend for safe concurrent infrastructure deployments'},
+    {n:'S3 Lifecycle',d:'Automated lifecycle rules to transition and delete old data, reducing storage costs'},
+  ]},
+  security:{logo:'IAM',title:'Security &amp; Identity',sub:'Access management, threat detection, and certificate services',services:[
+    {n:'IAM',d:'Users, roles, custom policies — fine-grained access control, least privilege, MFA enforcement'},
+    {n:'GuardDuty',d:'Daily monitoring of GuardDuty alerts for suspicious activities and threat detection'},
+    {n:'ACM',d:'SSL/TLS certificate management for HTTPS endpoints and custom domains'},
+    {n:'Trusted Advisor',d:'Cost optimization, security checks, and service limit recommendations'},
+    {n:'MFA',d:'Multi-factor authentication for EC2 RDP/SSH access, locking down security groups'},
+    {n:'VPC Security',d:'Security groups, NACLs, private subnet isolation, locked-down bastion host access'},
+  ]},
+  devtools:{logo:'CLI',title:'Dev Tools &amp; Automation',sub:'CI/CD, monitoring, messaging, and developer automation services',services:[
+    {n:'CodePipeline',d:'End-to-end CI/CD orchestration and automated application releases on AWS infrastructure'},
+    {n:'CloudWatch',d:'Monitors, alarms, dashboards, log groups, metric filters, agent for memory and log alerting'},
+    {n:'SNS',d:'Notification topics and alerting integrated with CloudWatch alarms and pipeline events'},
+    {n:'SES',d:'Production email sending, DNS configuration, domain verification for verified email delivery'},
+    {n:'CloudTrail',d:'API activity logging and audit trail for compliance and security forensics'},
+    {n:'AWS CLI',d:'Full resource management via AWS CLI and console across all services and accounts'},
+    {n:'Transfer Service',d:'Configured SFTP to S3 bucket using AWS Transfer Family for secure file transfers'},
+  ]}
+};
+
+function showAWS(cat){
+  const d=awsData[cat];
+  document.getElementById('awsLogo').textContent=d.logo;
+  document.getElementById('awsTitle').innerHTML=d.title;
+  document.getElementById('awsSub').innerHTML=d.sub;
+  document.getElementById('awsGrid').innerHTML=d.services.map(s=>`<div class="aws-s"><div class="aws-sn">${s.n}</div><div class="aws-sd">${s.d}</div></div>`).join('');
+  document.querySelectorAll('.aws-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelector(`[data-c="${cat}"]`).classList.add('on');
+}
+showAWS('compute');
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*70)});
+},{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
