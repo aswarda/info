@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aswarda Chari Vadlamani — Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root{
+  --void:#050508;
+  --void2:#0c0c12;
+  --surface:#111118;
+  --surface2:#18181f;
+  --surface3:#1f1f28;
+  --line:rgba(255,255,255,0.07);
+  --line2:rgba(255,255,255,0.04);
+  --gold:#c9a84c;
+  --gold2:#e8c97a;
+  --gold-dim:rgba(201,168,76,0.08);
+  --gold-line:rgba(201,168,76,0.25);
+  --white:#f5f4f0;
+  --white2:#c8c6bf;
+  --muted:#6a6a75;
+  --muted2:#44444e;
+  --accent:#4a9eff;
+  --green:#27ae60;
+  --r:4px;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--void);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.025;
+  pointer-events:none;
+  z-index:9997;
+}
+
+/* ── CURSOR ── */
+#cur{
+  width:8px;height:8px;
+  background:var(--gold);
+  border-radius:50%;
+  position:fixed;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s;
+}
+#cur-ring{
+  width:36px;height:36px;
+  border:1px solid var(--gold-line);
+  border-radius:50%;
+  position:fixed;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:all 0.2s ease;
+}
+body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{
+  transform:translate(-50%,-50%) scale(1.8);
+  border-color:var(--gold);
+}
+@media(max-width:640px){#cur,#cur-ring{display:none;}body{cursor:auto;}}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:2px;}
+::-webkit-scrollbar-track{background:var(--void);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(5,5,8,0.85);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--line);
+}
+.nav-logo{
+  font-family:'Space Mono',monospace;
+  font-size:13px;font-weight:700;
+  letter-spacing:0.14em;color:var(--white);
+}
+.nav-logo em{color:var(--gold);font-style:normal;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{
+  font-family:'DM Sans',sans-serif;
+  font-size:11px;font-weight:400;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold);}
+.nav-pill{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 14px;
+  border:1px solid rgba(39,174,96,0.3);
+  border-radius:99px;
+  font-size:11px;font-weight:400;
+  letter-spacing:0.12em;color:#27ae60;
+}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:#27ae60;animation:pulse-g 2.4s infinite;}
+@keyframes pulse-g{0%,100%{box-shadow:0 0 0 0 rgba(39,174,96,0.4)}60%{box-shadow:0 0 0 6px rgba(39,174,96,0)}}
+@media(max-width:768px){.nav-links{display:none;}}
+@media(max-width:480px){.nav-pill span{display:none;}}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:120px 48px 64px;
+  position:relative;overflow:hidden;
+}
+
+/* big bg monogram */
+.hero-mono{
+  position:absolute;
+  right:-2%;top:50%;transform:translateY(-50%);
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(360px,45vw,720px);
+  line-height:0.85;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(201,168,76,0.06);
+  pointer-events:none;user-select:none;
+  letter-spacing:-0.04em;
+}
+
+/* horizontal rule lines */
+.hero-rule{
+  position:absolute;
+  left:0;right:0;
+  height:1px;background:var(--line);
+}
+.hero-rule.r1{top:68px;}
+.hero-rule.r2{bottom:140px;}
+
+/* vertical line */
+.hero-vline{
+  position:absolute;
+  left:calc(48px + 120px);
+  top:68px;bottom:0;
+  width:1px;background:var(--line);
+}
+
+.hero-index{
+  position:absolute;
+  left:48px;bottom:64px;
+  writing-mode:vertical-rl;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.2em;
+  color:var(--muted2);text-transform:uppercase;
+}
+
+.hero-content{position:relative;z-index:2;}
+
+.hero-eyebrow{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:40px;
+  animation:fadeUp 0.7s 0.1s both;
+}
+.eyebrow-tick{
+  width:40px;height:1px;background:var(--gold);
+}
+.eyebrow-text{
+  font-family:'Space Mono',monospace;
+  font-size:10px;font-weight:400;
+  letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+.hero-name{
+  font-family:'DM Serif Display',serif;
+  font-weight:400;
+  line-height:0.9;
+  letter-spacing:-0.025em;
+  margin-bottom:40px;
+  animation:fadeUp 0.9s 0.2s both;
+}
+.hero-name .fn{
+  display:block;
+  font-size:clamp(64px,8.5vw,130px);
+  color:var(--white);
+}
+.hero-name .ln{
+  display:block;
+  font-size:clamp(64px,8.5vw,130px);
+  color:transparent;
+  -webkit-text-stroke:1px var(--white2);
+  font-style:italic;
+}
+
+.hero-body{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:end;
+  animation:fadeUp 0.8s 0.4s both;
+}
+@media(max-width:900px){.hero-body{grid-template-columns:1fr;gap:32px;}}
+
+.hero-desc{
+  font-size:15px;
+  color:var(--white2);
+  line-height:1.85;
+  max-width:520px;
+}
+.hero-role-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:20px;
+  padding:7px 16px 7px 12px;
+  border:1px solid var(--gold-line);
+  border-radius:2px;
+}
+.hero-role-tag::before{
+  content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);
+}
+
+/* stats grid */
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);}
+@media(max-width:540px){.hero-stats{grid-template-columns:repeat(2,1fr);}}
+.stat-cell{
+  background:var(--void);
+  padding:24px 20px 22px;
+  text-align:center;
+  transition:background 0.25s;
+}
+.stat-cell:hover{background:var(--gold-dim);}
+.stat-n{
+  font-family:'DM Serif Display',serif;
+  font-size:38px;font-weight:400;
+  color:var(--gold);
+  display:block;line-height:1;
+  margin-bottom:6px;
+}
+.stat-l{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--muted);
+  display:block;
+}
+
+.hero-cta{
+  display:flex;gap:12px;flex-wrap:wrap;
+  margin-top:24px;
+}
+.btn-p{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 28px;
+  background:var(--gold);
+  color:var(--void);
+  font-family:'Space Mono',monospace;
+  font-size:10px;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;
+  text-decoration:none;
+  border:1.5px solid var(--gold);
+  transition:all 0.25s;border-radius:2px;
+}
+.btn-p:hover{background:var(--gold2);border-color:var(--gold2);transform:translateY(-2px);}
+.btn-g{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 28px;
+  background:transparent;
+  color:var(--white2);
+  font-family:'Space Mono',monospace;
+  font-size:10px;font-weight:400;
+  letter-spacing:0.18em;text-transform:uppercase;
+  text-decoration:none;
+  border:1.5px solid var(--line);
+  transition:all 0.25s;border-radius:2px;
+}
+.btn-g:hover{border-color:var(--gold-line);color:var(--gold);transform:translateY(-2px);}
+
+/* profile strip */
+.hero-profile{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:28px;
+  animation:fadeUp 0.7s 0.05s both;
+}
+.hero-avatar{
+  width:72px;height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1.5px solid var(--gold-line);
+  box-shadow:0 0 0 4px rgba(201,168,76,0.06);
+}
+.hero-av-name{
+  font-family:'DM Serif Display',serif;
+  font-size:16px;color:var(--white);
+  margin-bottom:2px;
+}
+.hero-av-role{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--surface);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  height:48px;
+  overflow:hidden;
+  display:flex;align-items:center;
+}
+.t-track{display:flex;animation:ticker 30s linear infinite;white-space:nowrap;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.t-item{
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:0 28px;
+}
+.t-item.gold{color:var(--gold);opacity:1;}
+.t-sep{color:var(--muted2);padding:0 8px;}
+
+/* ── SECTION LAYOUT ── */
+.sec{padding:110px 48px;}
+@media(max-width:768px){.sec{padding:72px 24px;}}
+
+.sec-label{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:64px;
+}
+.sec-num{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--gold);
+}
+.sec-title-rule{flex:1;height:1px;background:var(--line);}
+.sec-tag{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--muted2);
+}
+
+.section-h{
+  font-family:'DM Serif Display',serif;
+  font-weight:400;
+  font-size:clamp(40px,5vw,72px);
+  line-height:1;
+  letter-spacing:-0.02em;
+  color:var(--white);
+  margin-bottom:16px;
+}
+.section-h em{color:var(--gold);font-style:italic;}
+
+/* ── ABOUT ── */
+#about-detail{background:var(--surface);}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:80px;align-items:start;
+}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:40px;}}
+.about-l .big-serif{
+  font-family:'DM Serif Display',serif;
+  font-size:72px;font-weight:400;
+  font-style:italic;
+  line-height:0.88;
+  color:var(--white);
+  margin-bottom:28px;
+}
+.about-l .profile-meta{
+  display:flex;flex-direction:column;gap:12px;
+}
+.meta-row{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--line2);
+  padding-bottom:12px;
+}
+.meta-row strong{color:var(--white2);font-weight:400;}
+.meta-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);}
+
+.about-quote{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(22px,2.5vw,30px);
+  font-weight:400;font-style:italic;
+  line-height:1.45;
+  color:var(--white);
+  margin-bottom:36px;
+  padding-left:24px;
+  border-left:2px solid var(--gold);
+}
+.about-body-text{
+  font-size:15px;color:var(--white2);
+  line-height:1.9;margin-bottom:20px;
+}
+.about-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;}
+.chip{
+  font-family:'Space Mono',monospace;
+  font-size:9px;font-weight:400;
+  letter-spacing:0.16em;text-transform:uppercase;
+  padding:7px 14px;
+  border:1px solid var(--line);
+  color:var(--muted);
+  background:var(--surface);
+  transition:all 0.2s;border-radius:2px;
+}
+.chip:hover{border-color:var(--gold-line);color:var(--gold);background:var(--gold-dim);}
+
+/* ── SKILLS ── */
+#skills{background:var(--void);}
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:64px;
+}
+@media(max-width:960px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:540px){.skills-grid{grid-template-columns:1fr;}}
+
+.sk{
+  background:var(--void);
+  padding:44px 36px 40px;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.sk:hover{background:var(--surface);}
+.sk::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.45s ease;
+}
+.sk:hover::before{transform:scaleX(1);}
+.sk-n{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.22em;
+  color:var(--gold);margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;
+}
+.sk-n::after{content:'';flex:1;height:1px;background:var(--line);}
+.sk-title{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;font-weight:400;
+  color:var(--white);margin-bottom:12px;line-height:1.2;
+}
+.sk-desc{
+  font-size:13px;color:var(--muted);
+  line-height:1.8;margin-bottom:24px;
+}
+.sk-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.sc{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.1em;
+  padding:4px 10px;
+  background:var(--surface2);
+  color:var(--white2);
+  border:1px solid var(--line);
+  transition:all 0.2s;border-radius:2px;
+}
+.sc:hover{background:var(--gold-dim);border-color:var(--gold-line);color:var(--gold);}
+
+/* ── EXPERIENCE ── */
+#experience{
+  background:var(--surface);
+  padding:110px 48px;
+}
+@media(max-width:768px){#experience{padding:72px 24px;}}
+.exp-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);
+}
+@media(max-width:768px){.exp-grid{grid-template-columns:1fr;}}
+
+.exp-card{
+  background:var(--surface);
+  padding:52px 44px;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.exp-card:hover{background:var(--surface2);}
+
+/* animated corner brackets */
+.exp-card::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.exp-card:hover::after{opacity:1;}
+
+.exp-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;
+  font-size:9px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;
+  padding:5px 12px;border-radius:99px;margin-bottom:28px;
+}
+.exp-badge.cur{
+  background:rgba(39,174,96,0.08);
+  color:#27ae60;
+  border:1px solid rgba(39,174,96,0.25);
+}
+.exp-badge.prev{
+  background:var(--gold-dim);
+  color:var(--gold);
+  border:1px solid var(--gold-line);
+}
+.exp-badge .bd{width:5px;height:5px;border-radius:50%;background:currentColor;}
+
+.exp-period{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.12em;
+  color:var(--muted2);margin-bottom:16px;
+}
+.exp-title{
+  font-family:'DM Serif Display',serif;
+  font-size:36px;font-weight:400;
+  color:var(--white);line-height:1;margin-bottom:8px;
+}
+.exp-company{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:36px;
+  display:flex;align-items:center;gap:10px;
+}
+.exp-company::before{content:'';width:16px;height:1px;background:var(--gold);opacity:0.5;}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.exp-list li{
+  font-size:13.5px;color:var(--muted);
+  padding-left:18px;position:relative;line-height:1.75;
+  transition:color 0.2s;
+}
+.exp-card:hover .exp-list li{color:rgba(255,255,255,0.55);}
+.exp-list li::before{
+  content:'→';position:absolute;left:0;
+  color:var(--gold);font-size:11px;
+  font-family:'Space Mono',monospace;
+}
+
+/* ── HIGHLIGHTS ── */
+#highlights{background:var(--void);}
+.hl-intro{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;margin-bottom:72px;align-items:end;
+}
+@media(max-width:768px){.hl-intro{grid-template-columns:1fr;gap:20px;}}
+.hl-desc{
+  font-size:15px;color:var(--muted);
+  line-height:1.9;padding-bottom:4px;
+}
+
+.hl-list{
+  display:flex;flex-direction:column;gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+.hl-row{
+  background:var(--void);
+  display:grid;
+  grid-template-columns:80px 1fr 1.2fr 56px;
+  gap:0;align-items:stretch;
+  transition:background 0.25s;
+  cursor:default;
+}
+@media(max-width:768px){.hl-row{grid-template-columns:56px 1fr;}.hl-desc-c,.hl-icon-c{display:none;}}
+.hl-row:hover{background:var(--gold-dim);}
+
+.hl-idx{
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Serif Display',serif;
+  font-size:30px;font-weight:400;
+  color:var(--muted2);
+  border-right:1px solid var(--line);
+  padding:0 20px;
+  min-height:80px;
+}
+.hl-row:hover .hl-idx{color:var(--gold);}
+
+.hl-main{
+  padding:26px 32px;
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hl-title{
+  font-family:'DM Serif Display',serif;
+  font-size:19px;font-weight:400;
+  color:var(--white);margin-bottom:4px;
+  line-height:1.2;
+}
+.hl-sub{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--muted2);
+}
+
+.hl-desc-c{
+  padding:26px 32px;
+  font-size:13px;color:var(--muted);
+  line-height:1.75;
+  border-right:1px solid var(--line);
+  display:flex;align-items:center;
+}
+.hl-icon-c{
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;padding:0 16px;
+}
+
+/* ── CONTACT ── */
+#contact{background:var(--void);}
+.contact-hero-block{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:100px 64px;
+  position:relative;overflow:hidden;
+  margin-bottom:1px;
+}
+@media(max-width:768px){.contact-hero-block{padding:64px 32px;}}
+
+.contact-hero-block::before{
+  content:'CONNECT';
+  position:absolute;
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(120px,18vw,260px);
+  color:transparent;
+  -webkit-text-stroke:1px rgba(201,168,76,0.05);
+  bottom:-30px;left:0;right:0;
+  text-align:center;
+  letter-spacing:0.08em;
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+.contact-avail{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:#27ae60;
+  border:1px solid rgba(39,174,96,0.25);
+  padding:6px 16px;border-radius:99px;
+  margin-bottom:36px;
+}
+.c-dot{width:6px;height:6px;border-radius:50%;background:#27ae60;animation:pulse-g 2.4s infinite;}
+
+.contact-h{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(52px,7vw,108px);
+  font-weight:400;line-height:0.9;
+  letter-spacing:-0.025em;
+  color:var(--white);
+  margin-bottom:36px;
+}
+.contact-h em{color:var(--gold);font-style:italic;}
+.contact-sub{
+  font-size:16px;color:var(--muted);
+  line-height:1.85;max-width:520px;
+  margin-bottom:52px;
+}
+
+.contact-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);
+}
+@media(max-width:768px){.contact-cards{grid-template-columns:1fr;}}
+
+.cc{
+  display:flex;align-items:center;gap:20px;
+  padding:36px 32px;
+  text-decoration:none;color:var(--white2);
+  background:var(--surface);
+  transition:all 0.25s;
+  position:relative;overflow:hidden;
+}
+.cc::after{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.35s ease;
+}
+.cc:hover::after{transform:scaleX(1);}
+.cc:hover{background:var(--surface2);}
+.cc-icon{
+  width:48px;height:48px;
+  background:var(--surface2);
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+  transition:all 0.25s;border-radius:2px;
+}
+.cc:hover .cc-icon{background:var(--gold-dim);border-color:var(--gold-line);}
+.cc-label{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:4px;
+}
+.cc-val{font-size:13.5px;font-weight:300;color:var(--white2);}
+
+.loc-strip{
+  background:var(--surface);
+  padding:32px 48px;
+  display:flex;align-items:center;
+  justify-content:space-between;
+  border:1px solid var(--line);border-top:none;
+  flex-wrap:wrap;gap:16px;
+}
+@media(max-width:768px){.loc-strip{padding:24px;}}
+.loc-item{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);
+}
+.loc-item strong{color:var(--white2);font-weight:400;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--void);
+  padding:36px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  border-top:1px solid var(--line);
+}
+.footer-brand{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;font-weight:400;
+  color:var(--white);letter-spacing:0.02em;
+}
+.footer-brand em{color:var(--gold);font-style:normal;}
+.footer-c{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.14em;
+  color:var(--muted2);
+}
+.footer-r{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.1em;
+  color:var(--muted2);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.in{opacity:1;transform:none;}
+.reveal.d1{transition-delay:0.08s;}
+.reveal.d2{transition-delay:0.16s;}
+.reveal.d3{transition-delay:0.24s;}
+.reveal.d4{transition-delay:0.32s;}
+.reveal.d5{transition-delay:0.4s;}
+
+/* ── SECTION SEPARATOR ── */
+.sec-div{height:1px;background:var(--line);}
+
+/* grid number count */
+.skills-header-row{
+  display:flex;align-items:baseline;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  padding-bottom:28px;
+  margin-bottom:0;
+}
+.skills-count-big{
+  font-family:'DM Serif Display',serif;
+  font-size:72px;font-weight:400;
+  color:rgba(201,168,76,0.12);
+  line-height:1;
+}
+
+/* section number inline */
+.s-overline{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.24em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+  display:block;
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ACV<em>.</em></div>
+  <ul class="nav-links">
+    <li><a href="#about-detail">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-pill">
+    <span class="nav-dot"></span>
+    <span>Open to Work</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-mono" aria-hidden="true">ACV</div>
+  <div class="hero-rule r1"></div>
+  <div class="hero-rule r2"></div>
+  <div class="hero-vline" aria-hidden="true"></div>
+  <div class="hero-index" aria-hidden="true">Portfolio — 2025</div>
+
+  <div class="hero-content">
+    <div class="hero-profile">
+      <img class="hero-avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzTTIBLcHcPwNdNZWcaPGV4Bqc6FeR3LTxRKUJ6CrK2sxKARkFeteXFLmPRlex7P8ABGzjiSR1ALeteoGPGthsc4rxTwZ4ovdEuIYIIDJ5jAEYr2ezvRPdQSzoY3dQcEV7mEmvZ2PKxMXz3Nd0yh+lVdOX5H+tX/lZDtIIxVbT1+WT610cwi9+yh+yh+1X/lZDtIIxVbT1+WT610cwi9+yh+1X/lZDtIIxVbT1+WT610cwS9+yh+1X/lZDtIIxVbT1+WT610cwS9+yh+1X/lZDtIIxVbT1+WT610cwS9+yh+1X/lZDtIIxVbT1+WT610cwS9+yh+1X/lZDtIIxVbT1+WT610cwS9+yh+1X/lZDtIIxVbT1+WT610cwi9+yh+1X/lZDtIIxVbT1+WT610cwi9+yh+1X/lZDtIIxVbT1+WT610cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cxi9+yh+1X/lZDtIIxVbT1+WT6V0cwi9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0cxS9+yh+1X/lZDtIIxVbT1+WT6V0=" alt="Aswarda Chari Vadlamani">
+      <div>
+        <div class="hero-av-name">Aswarda Chari Vadlamani</div>
+        <div class="hero-av-role">Cloud &amp; DevOps Engineer</div>
+      </div>
+    </div>
+
+    <div class="hero-eyebrow">
+      <div class="eyebrow-tick"></div>
+      <div class="eyebrow-text">Based in Bengaluru, India · Open to Remote</div>
+    </div>
+
+    <h1 class="hero-name">
+      <span class="fn">Aswarda Chari</span>
+      <span class="ln">Vadlamani</span>
+    </h1>
+
+    <div class="hero-body">
+      <div>
+        <div class="hero-role-tag">Cloud Infrastructure · GitOps · Platform Engineering</div>
+        <p class="hero-desc">Results-driven engineer with 4.5 years of hands-on experience designing, deploying, and automating scalable cloud-native infrastructure across AWS, GCP, and Azure. Specializing in Kubernetes, CI/CD automation, Crossplane, and GitOps-driven platform engineering.</p>
+      </div>
+      <div>
+        <div class="hero-stats">
+          <div class="stat-cell"><span class="stat-n">4.5</span><span class="stat-l">Years Exp.</span></div>
+          <div class="stat-cell"><span class="stat-n">3</span><span class="stat-l">Clouds</span></div>
+          <div class="stat-cell"><span class="stat-n">20+</span><span class="stat-l">AWS Svcs</span></div>
+          <div class="stat-cell"><span class="stat-n">9.19</span><span class="stat-l">CGPA</span></div>
+        </div>
+        <div class="hero-cta">
+          <a href="mailto:aswardavadlamani45@gmail.com" class="btn-p">✉ Hire Me</a>
+          <a href="https://www.linkedin.com/in/aswardavadlamani" target="_blank" class="btn-g">↗ LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-track">
+    <span class="t-item">AWS</span><span class="t-sep gold">·</span>
+    <span class="t-item">GCP</span><span class="t-sep gold">·</span>
+    <span class="t-item">Azure</span><span class="t-sep gold">·</span>
+    <span class="t-item">Kubernetes</span><span class="t-sep gold">·</span>
+    <span class="t-item">Crossplane</span><span class="t-sep gold">·</span>
+    <span class="t-item">ArgoCD</span><span class="t-sep gold">·</span>
+    <span class="t-item">Terraform</span><span class="t-sep gold">·</span>
+    <span class="t-item">Jenkins</span><span class="t-sep gold">·</span>
+    <span class="t-item">Helm</span><span class="t-sep gold">·</span>
+    <span class="t-item">Grafana</span><span class="t-sep gold">·</span>
+    <span class="t-item">Prometheus</span><span class="t-sep gold">·</span>
+    <span class="t-item">Docker</span><span class="t-sep gold">·</span>
+    <span class="t-item">GitOps</span><span class="t-sep gold">·</span>
+    <span class="t-item">DevSecOps</span><span class="t-sep gold">·</span>
+    <span class="t-item">AWS</span><span class="t-sep gold">·</span>
+    <span class="t-item">GCP</span><span class="t-sep gold">·</span>
+    <span class="t-item">Azure</span><span class="t-sep gold">·</span>
+    <span class="t-item">Kubernetes</span><span class="t-sep gold">·</span>
+    <span class="t-item">Crossplane</span><span class="t-sep gold">·</span>
+    <span class="t-item">ArgoCD</span><span class="t-sep gold">·</span>
+    <span class="t-item">Terraform</span><span class="t-sep gold">·</span>
+    <span class="t-item">Jenkins</span><span class="t-sep gold">·</span>
+    <span class="t-item">Helm</span><span class="t-sep gold">·</span>
+    <span class="t-item">Grafana</span><span class="t-sep gold">·</span>
+    <span class="t-item">Prometheus</span><span class="t-sep gold">·</span>
+    <span class="t-item">Docker</span><span class="t-sep gold">·</span>
+    <span class="t-item">GitOps</span><span class="t-sep gold">·</span>
+    <span class="t-item">DevSecOps</span><span class="t-sep gold">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="about-detail" style="background:var(--surface);padding-top:100px;padding-bottom:100px;">
+  <div class="sec-label">
+    <span class="sec-num">01</span>
+    <div class="sec-title-rule"></div>
+    <span class="sec-tag">Profile</span>
+  </div>
+  <div class="about-grid">
+    <div class="about-l">
+      <div class="big-serif">About<br>Me.</div>
+      <div class="profile-meta">
+        <div class="meta-row"><span class="meta-dot"></span><span>Location</span><strong>Bengaluru, India</strong></div>
+        <div class="meta-row"><span class="meta-dot"></span><span>Experience</span><strong>4.5 Years</strong></div>
+        <div class="meta-row"><span class="meta-dot"></span><span>Education</span><strong>BSc · ANU · 9.19</strong></div>
+        <div class="meta-row"><span class="meta-dot"></span><span>Status</span><strong style="color:#27ae60;">Open to Work</strong></div>
+        <div class="meta-row"><span class="meta-dot"></span><span>Mode</span><strong>Remote &amp; Hybrid</strong></div>
+      </div>
+    </div>
+    <div>
+      <p class="about-quote">"I architect infrastructure that scales, automates itself, and stays secure — so teams can ship faster without breaking things."</p>
+      <p class="about-body-text">I'm a Cloud &amp; DevOps Engineer with 4.5 years of experience helping organizations build production-grade, cloud-native platforms. At Deloitte, I lead platform engineering efforts — designing Crossplane-based self-service infrastructure, GitOps pipelines, and Kubernetes-native CI/CD systems that serve multiple customer teams simultaneously.</p>
+      <p class="about-body-text">Previously at Log-UsIMS Technologies, I managed full-stack cloud operations across AWS and GCP — from VPC architecture to container orchestration to real-time observability. I bring a builder's mindset to every problem: automate the toil, enforce the standards, and make the platform a product.</p>
+      <div class="about-chips">
+        <span class="chip">Platform Engineering</span>
+        <span class="chip">Cloud-Native</span>
+        <span class="chip">Kubernetes</span>
+        <span class="chip">GitOps</span>
+        <span class="chip">Infrastructure as Code</span>
+        <span class="chip">DevSecOps</span>
+        <span class="chip">Multi-Cloud</span>
+        <span class="chip">Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="sec-label">
+    <span class="sec-num">02</span>
+    <div class="sec-title-rule"></div>
+    <span class="sec-tag">Technical Arsenal</span>
+  </div>
+  <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:28px;">
+    <h2 class="section-heading">Skills &amp; <em>Technologies</em></h2>
+    <div style="font-family:'DM Serif Display',serif;font-size:72px;font-weight:400;color:rgba(201,168,76,0.1);line-height:1;">06</div>
+  </div>
+  <div class="skills-grid">
+
+    <div class="sk reveal d1">
+      <div class="sk-n">01</div>
+      <div class="sk-title">Cloud Platforms</div>
+      <p class="sk-desc">Multi-cloud expertise spanning AWS, GCP, and Azure with deep operational experience managing scalable, fault-tolerant infrastructure at enterprise scale.</p>
+      <div class="sk-chips">
+        <span class="sc">AWS</span><span class="sc">GCP</span><span class="sc">Azure</span>
+        <span class="sc">EC2</span><span class="sc">EKS</span><span class="sc">GKE</span>
+        <span class="sc">AKS</span><span class="sc">VPC</span><span class="sc">RDS</span>
+        <span class="sc">S3</span><span class="sc">IAM</span><span class="sc">CloudFront</span>
+        <span class="sc">Route 53</span><span class="sc">Cloud SQL</span>
+      </div>
+    </div>
+
+    <div class="sk reveal d2">
+      <div class="sk-n">02</div>
+      <div class="sk-title">CI/CD &amp; GitOps</div>
+      <p class="sk-desc">End-to-end CI/CD pipelines using Jenkins on Kubernetes, GitHub Actions, ArgoCD, and Flux — all driven by GitOps principles with drift detection and auto-healing.</p>
+      <div class="sk-chips">
+        <span class="sc">Jenkins</span><span class="sc">ArgoCD</span>
+        <span class="sc">GitHub Actions</span><span class="sc">Flux CD</span>
+        <span class="sc">AWS CodePipeline</span><span class="sc">Azure DevOps</span>
+        <span class="sc">Bitbucket</span>
+      </div>
+    </div>
+
+    <div class="sk reveal d3">
+      <div class="sk-n">03</div>
+      <div class="sk-title">Infrastructure as Code</div>
+      <p class="sk-desc">Composable, reusable infrastructure abstractions using Crossplane XRDs, Terraform modules, and Ansible playbooks across multi-cloud environments.</p>
+      <div class="sk-chips">
+        <span class="sc">Crossplane</span><span class="sc">Terraform</span>
+        <span class="sc">Ansible</span><span class="sc">XRDs</span>
+        <span class="sc">Compositions</span><span class="sc">OPA</span>
+        <span class="sc">Managed Resources</span>
+      </div>
+    </div>
+
+    <div class="sk reveal d1">
+      <div class="sk-n">04</div>
+      <div class="sk-title">Containers &amp; Kubernetes</div>
+      <p class="sk-desc">Deep Kubernetes expertise — RBAC, dynamic Jenkins agents via PodTemplates, namespace management, Helm chart authoring, and container-native CI/CD workflows.</p>
+      <div class="sk-chips">
+        <span class="sc">Kubernetes</span><span class="sc">Docker</span>
+        <span class="sc">Helm</span><span class="sc">ECS</span>
+        <span class="sc">ECR</span><span class="sc">ACR</span>
+        <span class="sc">RBAC</span><span class="sc">PodTemplates</span>
+      </div>
+    </div>
+
+    <div class="sk reveal d2">
+      <div class="sk-n">05</div>
+      <div class="sk-title">DevSecOps &amp; Observability</div>
+      <p class="sk-desc">Security scanning and real-time observability embedded into every pipeline — from code commit to production, nothing ships without passing security gates.</p>
+      <div class="sk-chips">
+        <span class="sc">Trivy</span><span class="sc">SonarQube</span>
+        <span class="sc">Snyk</span><span class="sc">Grafana</span>
+        <span class="sc">Prometheus</span><span class="sc">Nagios</span>
+        <span class="sc">CloudWatch</span>
+      </div>
+    </div>
+
+    <div class="sk reveal d3">
+      <div class="sk-n">06</div>
+      <div class="sk-title">Scripting &amp; OS</div>
+      <p class="sk-desc">Linux administration, shell scripting for automation, Python scripting, and extensive experience with Red Hat, CentOS, and Ubuntu enterprise deployments.</p>
+      <div class="sk-chips">
+        <span class="sc">Shell Script</span><span class="sc">Python</span>
+        <span class="sc">Go</span><span class="sc">Linux (RHEL)</span>
+        <span class="sc">Ubuntu</span><span class="sc">Bash</span>
+        <span class="sc">Cron</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec" style="padding-bottom:0;">
+    <div class="sec-label">
+      <span class="sec-num">03</span>
+      <div class="sec-title-rule"></div>
+      <span class="sec-tag">Career Journey</span>
+    </div>
+    <h2 class="section-heading" style="margin-bottom:48px;">Work <em>Experience</em></h2>
+  </div>
+  <div class="exp-grid" style="margin:0 48px 110px;">
+
+    <div class="exp-card reveal d1">
+      <div class="exp-badge cur"><span class="bd"></span>Current Role</div>
+      <div class="exp-period">2024 Nov — Present &nbsp;·&nbsp; 1.6 Years</div>
+      <div class="exp-title">CaaS Engineer</div>
+      <div class="exp-company">Deloitte Shared Services India LLP</div>
+      <ul class="exp-list">
+        <li>Designed and developed Crossplane XRDs and Compositions for reusable, product-grade infrastructure abstractions used across multiple customer teams</li>
+        <li>Set up centralized Crossplane control plane with RBAC, multi-tenancy, and full GitOps workflows via Flux/ArgoCD</li>
+        <li>Implemented end-to-end GitOps Continuous Delivery integrating Flux/ArgoCD with Crossplane managed resources</li>
+        <li>Automated cloud resource provisioning (AWS, GCP) via Crossplane Managed Resources and Compositions</li>
+        <li>Architected highly available Jenkins-on-Kubernetes CI/CD with dynamic PodTemplate agents — eliminating idle compute costs</li>
+        <li>Integrated DevSecOps tooling — Trivy, SonarQube, Snyk — enforcing security gates before production deployment</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal d2">
+      <div class="exp-badge prev"><span class="bd"></span>Previous Role</div>
+      <div class="exp-period">2022 Jan — 2024 Nov &nbsp;·&nbsp; 2.9 Years</div>
+      <div class="exp-title">DevOps Engineer</div>
+      <div class="exp-company">Log-UsIMS Technologies Pvt. Ltd.</div>
+      <ul class="exp-list">
+        <li>Designed and maintained Jenkins CI/CD pipelines for Java/Tomcat, Golang, and Docker-based microservice applications</li>
+        <li>Implemented GitOps deployments using ArgoCD with auto-sync, self-heal, and prune policies for zero-drift deployments</li>
+        <li>Managed full AWS infrastructure stack: VPC, EC2, ECS, RDS, S3, IAM, CloudFront, Route53, and more</li>
+        <li>Developed reusable Terraform modules for AWS and GCP infrastructure automation and compliance enforcement</li>
+        <li>Configured comprehensive monitoring and alerting using Grafana, Prometheus, and Nagios across production environments</li>
+        <li>Managed Google Cloud platform: GKE, Compute Engine, Cloud SQL, App Engine, and CloudArmor security policies</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="sec" id="highlights" style="background:var(--surface);">
+  <div class="sec-label">
+    <span class="sec-num">04</span>
+    <div class="sec-title-rule"></div>
+    <span class="sec-tag">Key Achievements</span>
+  </div>
+  <div class="hl-intro">
+    <h2 class="section-heading">Notable <em>Highlights</em></h2>
+    <p class="hl-desc">Six standout projects and achievements that define the breadth and depth of my engineering impact — from platform architecture to academic excellence.</p>
+  </div>
+  <div class="hl-list">
+    <div class="hl-row reveal d1">
+      <div class="hl-idx">01</div>
+      <div class="hl-main"><div class="hl-title">Crossplane Platform Engineering</div><div class="hl-sub">Deloitte · Infrastructure Abstraction</div></div>
+      <div class="hl-desc-c">Built reusable XRD-based infrastructure abstractions enabling self-service cloud provisioning for internal teams across AWS and GCP — reducing provisioning time from days to minutes.</div>
+      <div class="hl-icon-c">🏗️</div>
+    </div>
+    <div class="hl-row reveal d2">
+      <div class="hl-idx">02</div>
+      <div class="hl-main"><div class="hl-title">Jenkins-on-Kubernetes CI/CD</div><div class="hl-sub">Deloitte · Platform Scaling</div></div>
+      <div class="hl-desc-c">Architected a horizontally scalable Jenkins platform with dynamic Kubernetes agent pods — eliminating idle resource costs and improving build isolation across engineering teams.</div>
+      <div class="hl-icon-c">🚀</div>
+    </div>
+    <div class="hl-row reveal d3">
+      <div class="hl-idx">03</div>
+      <div class="hl-main"><div class="hl-title">Multi-Cloud GitOps Pipelines</div><div class="hl-sub">Deloitte · AWS · GCP · Azure</div></div>
+      <div class="hl-desc-c">Implemented end-to-end GitOps pipelines using ArgoCD and Flux across all three major cloud providers with full drift detection, auto-reconciliation, and rollback capabilities.</div>
+      <div class="hl-icon-c">🌐</div>
+    </div>
+    <div class="hl-row reveal d4">
+      <div class="hl-idx">04</div>
+      <div class="hl-main"><div class="hl-title">DevSecOps Gate Integration</div><div class="hl-sub">Deloitte · Security Automation</div></div>
+      <div class="hl-desc-c">Embedded Trivy, SonarQube, and Snyk into every CI pipeline as mandatory quality gates — zero workloads reaching production without passing security and code quality scans.</div>
+      <div class="hl-icon-c">🛡️</div>
+    </div>
+    <div class="hl-row reveal d5">
+      <div class="hl-idx">05</div>
+      <div class="hl-main"><div class="hl-title">Academic Excellence — 9.19 CGPA</div><div class="hl-sub">ANU University · BSc · 2019</div></div>
+      <div class="hl-desc-c">Graduated with distinction from Acharya Nagarjuna University in 2019 — building a strong theoretical foundation that complements extensive hands-on cloud engineering experience.</div>
+      <div class="hl-icon-c">🎓</div>
+    </div>
+    <div class="hl-row reveal d1">
+      <div class="hl-idx">06</div>
+      <div class="hl-main"><div class="hl-title">Full-Stack Cloud Operations</div><div class="hl-sub">Log-UsIMS · L2/L3 Support</div></div>
+      <div class="hl-desc-c">Delivered L2/L3 support, SOP development, 24/7 on-call coverage, and infrastructure monitoring across Linux and AWS production environments for enterprise clients.</div>
+      <div class="hl-icon-c">⚙️</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact" style="padding-bottom:0;">
+  <div class="sec-label">
+    <span class="sec-num">05</span>
+    <div class="sec-title-rule"></div>
+    <span class="sec-tag">Get in Touch</span>
+  </div>
+  <div class="contact-hero-block">
+    <div class="contact-avail"><span class="c-dot"></span>Available for New Opportunities</div>
+    <div class="contact-h">Let's Build<br><em>Something</em><br>Great.</div>
+    <p class="contact-sub">Open to Cloud / DevOps / Platform Engineering roles. I'm looking for teams building Kubernetes-native infrastructure, GitOps platforms, and scalable multi-cloud systems. Let's talk.</p>
+    <a href="mailto:aswardavadlamani45@gmail.com" class="btn-p">✉ Send Me a Message</a>
+  </div>
+  <div class="contact-cards">
+    <a href="mailto:aswardavadlamani45@gmail.com" class="cc">
+      <div class="cc-icon">✉</div>
+      <div><div class="cc-label">Email</div><div class="cc-val">aswardavadlamani45@gmail.com</div></div>
+    </a>
+    <a href="tel:+919014008541" class="cc">
+      <div class="cc-icon">📞</div>
+      <div><div class="cc-label">Phone</div><div class="cc-val">+91 9014008541</div></div>
+    </a>
+    <a href="https://www.linkedin.com/in/aswardavadlamani" target="_blank" class="cc">
+      <div class="cc-icon">↗</div>
+      <div><div class="cc-label">LinkedIn</div><div class="cc-val">linkedin.com/in/aswardavadlamani</div></div>
+    </a>
+  </div>
+  <div class="loc-strip">
+    <div class="loc-item"><span>📍</span><span><strong>Bengaluru, India</strong></span></div>
+    <div class="loc-item"><span>🌐</span><span><strong>Remote &amp; Hybrid</strong></span></div>
+    <div class="loc-item"><span>🗣</span><span><strong>English · Telugu · Hindi</strong></span></div>
+    <div class="loc-item"><span>🎓</span><span><strong>BSc — ANU · 9.19 CGPA</strong></span></div>
+    <div class="loc-item"><span>💼</span><span><strong>4.5 Years Experience</strong></span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">ACV<em>.</em></div>
+  <div class="footer-c">© 2025 Aswarda Chari Vadlamani · Cloud &amp; DevOps Engineer</div>
+  <div class="footer-r">Built with HTML · GitHub Pages</div>
+</footer>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur');
+const ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function anim(){
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  rx+=(mx-rx)*0.11;ry+=(my-ry)*0.11;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(anim);
+})();
+
+/* SCROLL REVEAL */
+const els=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:0.07,rootMargin:'0px 0px -40px 0px'});
+els.forEach(el=>io.observe(el));
+setTimeout(()=>{document.querySelectorAll('.reveal:not(.in)').forEach(el=>el.classList.add('in'));},2200);
+
+/* ACTIVE NAV */
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  links.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--gold)':'';});
+},{passive:true});
+</script>
+</body>
+</html>
