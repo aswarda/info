@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aswarda Chari Vadlamani — Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#faf8f3;
+  --ivory2:#f3f0e8;
+  --ivory3:#ece7db;
+  --cream:#e8e0d0;
+  --ink:#1c1814;
+  --ink2:#2e2820;
+  --ink3:#4a4238;
+  --muted:#8a7f72;
+  --muted2:#b5aa9a;
+  --navy:#0f1f3d;
+  --navy2:#162645;
+  --navy3:#1e3258;
+  --gold:#b8882a;
+  --gold2:#d4a843;
+  --gold3:#e8c46a;
+  --gold-light:#f5e4b8;
+  --red:#c0392b;
+  --red2:#e05a4a;
+  --border:rgba(28,24,20,0.1);
+  --border2:rgba(28,24,20,0.06);
+  --shadow:0 2px 40px rgba(28,24,20,0.08);
+  --shadow2:0 8px 60px rgba(28,24,20,0.12);
+  --fo:'Playfair Display',serif;
+  --fb:'Jost',sans-serif;
+  --fc:'Cormorant',serif;
+  --fm:'DM Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ivory);color:var(--ink);font-family:var(--fb);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold2);color:var(--ivory);}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--ivory);}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--navy));}
+
+/* ────────────────────────────────
+   PROGRESS
+──────────────────────────────── */
+#prg{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0%;background:linear-gradient(90deg,var(--navy),var(--gold2),var(--red));}
+
+/* ────────────────────────────────
+   NAV
+──────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  height:62px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  background:rgba(250,248,243,0.92);
+  backdrop-filter:blur(24px) saturate(160%);
+  -webkit-backdrop-filter:blur(24px) saturate(160%);
+  border-bottom:1px solid var(--border2);
+  transition:box-shadow .3s;
+}
+nav.s{box-shadow:0 4px 32px rgba(28,24,20,0.07);}
+.n-logo{font-family:var(--fo);font-size:20px;font-weight:700;color:var(--ink);letter-spacing:.02em;}
+.n-logo em{font-style:normal;color:var(--gold);}
+.n-links{display:flex;gap:36px;list-style:none;}
+.n-links a{
+  font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;position:relative;padding-bottom:3px;
+}
+.n-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--navy),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .32s cubic-bezier(.16,1,.3,1);}
+.n-links a:hover,.n-links a.on{color:var(--ink);}
+.n-links a:hover::after,.n-links a.on::after{transform:scaleX(1);}
+.n-badge{display:flex;align-items:center;gap:8px;font-family:var(--fm);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#2d8f5e;}
+.n-dot{width:6px;height:6px;border-radius:50%;background:#2d8f5e;animation:pd 2.2s ease-in-out infinite;}
+@keyframes pd{0%,100%{box-shadow:0 0 0 0 rgba(45,143,94,.4)}50%{box-shadow:0 0 0 6px rgba(45,143,94,0)}}
+@media(max-width:768px){.n-links,.n-badge{display:none;}}
+
+/* ────────────────────────────────
+   HERO
+──────────────────────────────── */
+.hero{
+  min-height:100vh;padding-top:62px;
+  display:grid;grid-template-rows:1fr auto;
+  position:relative;overflow:hidden;
+  background:var(--ivory);
+}
+
+/* Decorative elements */
+.hero-deco-circle{
+  position:absolute;width:700px;height:700px;border-radius:50%;
+  border:1px solid rgba(184,136,42,0.12);
+  top:50%;right:-200px;transform:translateY(-50%);
+  pointer-events:none;
+}
+.hero-deco-circle::before{
+  content:'';position:absolute;inset:60px;border-radius:50%;
+  border:1px solid rgba(184,136,42,0.08);
+}
+.hero-deco-circle::after{
+  content:'';position:absolute;inset:130px;border-radius:50%;
+  border:1px solid rgba(184,136,42,0.05);
+}
+.hero-deco-line{
+  position:absolute;top:0;bottom:0;left:38%;
+  width:1px;background:linear-gradient(180deg,transparent,rgba(28,24,20,0.06) 20%,rgba(28,24,20,0.06) 80%,transparent);
+  pointer-events:none;
+}
+.hero-deco-dot-grid{
+  position:absolute;right:5%;top:20%;
+  width:160px;height:160px;
+  background-image:radial-gradient(circle,rgba(184,136,42,0.2) 1px,transparent 1px);
+  background-size:16px 16px;
+  pointer-events:none;
+  opacity:.5;
+}
+
+/* Number watermark */
+.hero-watermark{
+  position:absolute;right:4%;bottom:8%;
+  font-family:var(--fo);font-size:clamp(100px,15vw,220px);font-weight:900;
+  color:transparent;-webkit-text-stroke:1px rgba(28,24,20,0.04);
+  line-height:1;pointer-events:none;user-select:none;letter-spacing:-.03em;
+}
+
+.hero-body{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  align-items:center;padding:60px 0 40px;position:relative;z-index:2;
+}
+@media(max-width:900px){.hero-body{grid-template-columns:1fr;padding:60px 5% 40px;}}
+
+/* LEFT col */
+.h-left{padding:0 5%;display:flex;flex-direction:column;}
+.h-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--fm);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:28px;
+  animation:fu .7s cubic-bezier(.16,1,.3,1) .1s both;
+}
+.h-tag-line{width:40px;height:1px;background:linear-gradient(90deg,var(--navy),var(--gold2));}
+
+/* Name block */
+.h-name{
+  font-family:var(--fo);font-weight:400;
+  line-height:.92;letter-spacing:-.02em;
+  margin-bottom:32px;
+  animation:fu .9s cubic-bezier(.16,1,.3,1) .2s both;
+}
+.h-n1{display:block;font-size:clamp(52px,7vw,110px);color:var(--ink);}
+.h-n2{display:block;font-size:clamp(52px,7vw,110px);font-style:italic;color:var(--gold);}
+
+.h-role{
+  font-family:var(--fb);font-size:clamp(13px,1.4vw,17px);font-weight:300;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--navy);
+  margin-bottom:20px;
+  animation:fu .8s cubic-bezier(.16,1,.3,1) .35s both;
+}
+.h-desc{
+  font-size:15px;color:var(--muted);line-height:1.95;max-width:440px;
+  margin-bottom:36px;
+  animation:fu .8s cubic-bezier(.16,1,.3,1) .45s both;
+}
+.h-cta{
+  display:flex;gap:12px;flex-wrap:wrap;
+  animation:fu .8s cubic-bezier(.16,1,.3,1) .55s both;
+}
+
+/* Buttons */
+.btn-navy{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:14px 28px;background:var(--navy);color:var(--ivory);
+  font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;border:1.5px solid var(--navy);
+  transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;
+}
+.btn-navy::before{content:'';position:absolute;inset:0;background:var(--navy2);transform:translateY(101%);transition:transform .3s cubic-bezier(.16,1,.3,1);}
+.btn-navy:hover::before{transform:translateY(0);}
+.btn-navy:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(15,31,61,0.3);}
+.btn-navy span{position:relative;z-index:1;}
+.btn-line{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 28px;background:transparent;color:var(--ink);
+  font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;border:1.5px solid var(--border);
+  transition:all .25s;
+}
+.btn-line:hover{border-color:var(--gold2);color:var(--gold);transform:translateY(-2px);}
+
+/* RIGHT col — Photo card */
+.h-right{
+  position:relative;height:100%;min-height:520px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+@media(max-width:900px){.h-right{min-height:360px;padding:0 5% 40px;}}
+.h-photo-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--ivory2),var(--cream));
+  clip-path:polygon(8% 0%,100% 0%,100% 100%,0% 100%,0% 8%);
+}
+.h-photo-frame{
+  position:relative;z-index:2;
+  width:clamp(260px,28vw,380px);
+  aspect-ratio:3/4;
+  overflow:hidden;
+  box-shadow:0 24px 80px rgba(28,24,20,0.18),0 4px 16px rgba(28,24,20,0.08);
+}
+.h-photo-frame::before{
+  content:'';position:absolute;inset:0;z-index:3;
+  background:linear-gradient(180deg,transparent 50%,rgba(15,31,61,0.4));
+}
+.h-photo-frame img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+}
+/* Gold corner accents */
+.h-photo-frame::after{
+  content:'';position:absolute;z-index:4;
+  top:16px;left:16px;right:16px;bottom:16px;
+  border-top:1.5px solid rgba(212,168,67,0.4);
+  border-left:1.5px solid rgba(212,168,67,0.4);
+  border-right:none;border-bottom:none;
+  pointer-events:none;
+}
+.h-photo-caption{
+  position:absolute;bottom:28px;left:28px;right:28px;z-index:5;
+}
+.h-photo-caption-name{
+  font-family:var(--fo);font-size:18px;font-weight:700;
+  color:#fff;letter-spacing:.02em;margin-bottom:4px;
+  text-shadow:0 2px 12px rgba(0,0,0,0.4);
+}
+.h-photo-caption-role{
+  font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold3);
+}
+
+/* Float badge */
+.h-exp-badge{
+  position:absolute;bottom:48px;right:-16px;z-index:6;
+  background:var(--navy);color:var(--ivory);
+  padding:16px 20px;box-shadow:var(--shadow2);
+  text-align:center;min-width:100px;
+}
+.h-exp-n{font-family:var(--fo);font-size:36px;font-weight:700;color:var(--gold2);line-height:1;}
+.h-exp-l{font-family:var(--fm);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,243,.45);margin-top:3px;}
+@media(max-width:900px){.h-exp-badge{display:none;}}
+
+/* KPI strip below name */
+.h-kpi{
+  display:flex;gap:0;border:1px solid var(--border);
+  margin-bottom:28px;background:rgba(255,255,255,0.5);
+  animation:fu .8s cubic-bezier(.16,1,.3,1) .4s both;
+  max-width:440px;
+}
+.hk{
+  flex:1;padding:14px 12px;border-right:1px solid var(--border);
+  text-align:center;transition:background .25s;
+}
+.hk:last-child{border-right:none;}
+.hk:hover{background:rgba(15,31,61,0.04);}
+.hk-n{display:block;font-family:var(--fo);font-size:24px;font-weight:700;color:var(--navy);line-height:1;}
+.hk-l{display:block;margin-top:3px;font-family:var(--fm);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+/* ────────────────────────────────
+   TICKER
+──────────────────────────────── */
+.ticker{
+  background:var(--navy);height:44px;display:flex;align-items:center;
+  overflow:hidden;position:relative;
+}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none;}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--navy),transparent);}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--navy),transparent);}
+.t-track{display:flex;animation:tk 36s linear infinite;white-space:nowrap;}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ti{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,248,243,.32);padding:0 20px;}
+.ti.g{color:var(--gold2);opacity:1;}
+.ti.r{color:var(--red2);opacity:.8;}
+.ti.dot{color:rgba(250,248,243,.16);padding:0 8px;}
+
+/* ────────────────────────────────
+   SECTION SHARED
+──────────────────────────────── */
+.ovl{font-family:var(--fm);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.sec-title{font-family:var(--fo);font-size:clamp(32px,4.5vw,60px);font-weight:700;line-height:1;color:var(--ink);}
+.sec-title em{font-style:italic;color:var(--navy);}
+.sec-title.light{color:var(--ivory);}
+.sec-title.light em{color:var(--gold2);}
+
+/* Divider ornament */
+.ornament{display:flex;align-items:center;gap:12px;margin-bottom:56px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.ornament-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border));}
+.ornament-line.l{background:linear-gradient(90deg,var(--border),transparent);}
+.ornament-diamond{width:8px;height:8px;background:var(--gold2);transform:rotate(45deg);flex-shrink:0;}
+
+/* ────────────────────────────────
+   ABOUT
+──────────────────────────────── */
+#about{
+  background:var(--ivory2);
+  padding:96px 5%;
+  display:grid;grid-template-columns:300px 1fr;gap:80px;align-items:start;
+  border-top:1px solid var(--border2);
+  position:relative;overflow:hidden;
+}
+#about::before{content:'';position:absolute;top:0;right:0;width:600px;height:100%;background:radial-gradient(ellipse at top right,rgba(15,31,61,0.04),transparent);pointer-events:none;}
+@media(max-width:860px){#about{grid-template-columns:1fr;gap:32px;}}
+.ab-left{position:sticky;top:90px;}
+.ab-big{font-family:var(--fo);font-size:72px;font-weight:900;font-style:italic;line-height:.88;color:var(--ink);opacity:.08;margin-bottom:16px;letter-spacing:-.03em;}
+.ab-num{font-family:var(--fm);font-size:10px;letter-spacing:.22em;color:var(--gold);}
+.ab-quote{
+  font-family:var(--fc);font-size:clamp(19px,2.2vw,27px);
+  font-style:italic;line-height:1.65;color:var(--ink2);
+  margin-bottom:28px;
+  padding:28px 28px 28px 32px;
+  background:rgba(255,255,255,0.7);
+  border-left:3px solid var(--gold2);
+  box-shadow:var(--shadow);
+  position:relative;
+}
+.ab-quote::before{
+  content:'\201C';
+  position:absolute;top:-10px;left:16px;
+  font-family:var(--fo);font-size:80px;color:rgba(184,136,42,0.1);
+  line-height:1;pointer-events:none;
+}
+.ab-body{font-size:14.5px;color:var(--muted);line-height:2;max-width:640px;margin-bottom:18px;}
+.ab-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.ac{
+  font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 13px;border:1px solid var(--border);color:var(--ink3);
+  background:var(--ivory);transition:all .2s;cursor:default;
+}
+.ac:hover{border-color:var(--navy);color:var(--navy);background:rgba(15,31,61,0.04);}
+
+/* ────────────────────────────────
+   SKILLS
+──────────────────────────────── */
+#skills{padding:96px 5%;background:var(--ivory);position:relative;}
+.sk-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:56px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.sk-count{font-family:var(--fo);font-size:72px;font-weight:900;color:rgba(15,31,61,0.06);line-height:1;}
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+@media(max-width:900px){.sk-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:540px){.sk-grid{grid-template-columns:1fr;}}
+
+/* Skill card */
+.sk{
+  background:var(--ivory);
+  padding:36px 28px 32px;
+  position:relative;overflow:hidden;
+  transition:background .3s,transform .2s,box-shadow .3s;
+  --mx:50%;--my:50%;
+}
+.sk:hover{background:#fff;box-shadow:0 -4px 0 var(--gold2) inset,var(--shadow);}
+/* Spotlight */
+.sk::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(15,31,61,0.04),transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.sk:hover::after{opacity:1;}
+/* Number line */
+.sk-num{
+  font-family:var(--fm);font-size:9.5px;letter-spacing:.2em;color:var(--gold);
+  margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.sk-num::after{content:'';flex:1;height:1px;background:var(--border2);}
+.sk-title{font-family:var(--fo);font-size:21px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.2;}
+.sk-desc{font-size:13px;color:var(--muted);line-height:1.85;margin-bottom:18px;}
+.sk-chips{display:flex;flex-wrap:wrap;gap:5px;}
+.sc{
+  font-family:var(--fm);font-size:8.5px;letter-spacing:.06em;
+  padding:3px 9px;background:var(--ivory2);color:var(--ink3);
+  border:1px solid var(--border);transition:all .18s;cursor:default;
+}
+.sc:hover{background:var(--navy);color:var(--ivory);border-color:var(--navy);}
+/* NEW badge */
+.sk-new{
+  position:absolute;top:14px;right:14px;
+  font-family:var(--fm);font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ivory);background:var(--gold);
+  padding:3px 9px;
+}
+
+/* ────────────────────────────────
+   EXPERIENCE (navy bg)
+──────────────────────────────── */
+#experience{
+  background:var(--navy);
+  padding:96px 5%;position:relative;overflow:hidden;
+}
+#experience::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+#experience::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold2),var(--gold3),transparent);}
+.ex-hd{margin-bottom:64px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.ex-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:768px){.ex-cards{grid-template-columns:1fr;}}
+.ex-c{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  padding:40px 36px;
+  position:relative;overflow:hidden;
+  transition:background .3s,border-color .3s;
+}
+.ex-c:hover{background:rgba(255,255,255,0.07);border-color:rgba(212,168,67,0.25);}
+.ex-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold3));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.ex-c:hover::before{transform:scaleX(1);}
+.ex-badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border-radius:0;margin-bottom:22px;}
+.eb-g{background:rgba(45,143,94,0.1);color:#5dd4a0;border:1px solid rgba(45,143,94,0.2);}
+.eb-a{background:rgba(212,168,67,0.1);color:var(--gold3);border:1px solid rgba(212,168,67,0.2);}
+.eb-dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pd 2s infinite;}
+.ex-per{font-family:var(--fm);font-size:9.5px;color:rgba(250,248,243,.22);letter-spacing:.08em;margin-bottom:12px;}
+.ex-title{font-family:var(--fo);font-size:32px;font-weight:700;color:var(--ivory);line-height:1.05;margin-bottom:6px;}
+.ex-co{font-family:var(--fm);font-size:9.5px;color:var(--gold2);letter-spacing:.06em;margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.ex-co::before{content:'';width:16px;height:1px;background:var(--gold2);opacity:.5;}
+.ex-ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ex-ul li{font-size:13px;color:rgba(250,248,243,.38);padding-left:16px;position:relative;line-height:1.8;transition:color .2s;}
+.ex-c:hover .ex-ul li{color:rgba(250,248,243,.62);}
+.ex-ul li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:10px;top:4px;}
+
+/* ────────────────────────────────
+   HIGHLIGHTS
+──────────────────────────────── */
+#highlights{padding:96px 5%;background:var(--ivory2);position:relative;}
+.hl-hd{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:48px;align-items:end;}
+@media(max-width:768px){.hl-hd{grid-template-columns:1fr;gap:16px;}}
+.hl-desc{font-size:14px;color:var(--muted);line-height:2;}
+.hl-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);}
+.hl-row{
+  background:var(--ivory);
+  display:grid;grid-template-columns:72px 1fr 1.2fr 60px;
+  align-items:center;
+  transition:background .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
+}
+.hl-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(15,31,61,0.04),transparent);transition:width .4s cubic-bezier(.16,1,.3,1);}
+.hl-row:hover::before{width:100%;}
+.hl-row:hover{background:#fff;box-shadow:0 4px 24px rgba(28,24,20,0.06);}
+@media(max-width:768px){.hl-row{grid-template-columns:52px 1fr;}.hl-dc,.hl-ic{display:none;}}
+.hl-i{padding:24px 18px;font-family:var(--fo);font-size:26px;font-weight:900;color:var(--ivory3);border-right:1px solid var(--border2);font-style:italic;letter-spacing:-.02em;}
+.hl-m{padding:24px 28px;border-right:1px solid var(--border2);}
+.hl-t{font-family:var(--fo);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.hl-s{font-family:var(--fm);font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+.hl-dc{padding:24px 28px;font-size:13px;color:var(--muted);line-height:1.8;border-right:1px solid var(--border2);}
+.hl-ic{padding:24px;text-align:center;font-size:22px;}
+
+/* ────────────────────────────────
+   CONTACT
+──────────────────────────────── */
+#contact{background:var(--ivory);padding:0;}
+.ct-hero{
+  background:var(--ivory2);
+  padding:100px 5%;position:relative;overflow:hidden;
+}
+.ct-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--navy),var(--gold2),transparent);}
+.ct-bg{
+  position:absolute;right:-4%;bottom:0;
+  font-family:var(--fo);font-size:clamp(120px,18vw,260px);
+  font-weight:900;font-style:italic;
+  color:transparent;-webkit-text-stroke:1px rgba(28,24,20,0.04);
+  line-height:1;pointer-events:none;user-select:none;letter-spacing:-.04em;
+}
+.ct-inner{position:relative;z-index:1;max-width:660px;}
+.ct-pill{display:inline-flex;align-items:center;gap:8px;margin-bottom:28px;font-family:var(--fm);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#2d8f5e;border:1px solid rgba(45,143,94,0.2);padding:6px 14px;}
+.ct-pill-dot{width:5px;height:5px;border-radius:50%;background:#2d8f5e;animation:pd 2s infinite;}
+.ct-h{font-family:var(--fo);font-size:clamp(44px,7vw,90px);font-weight:400;font-style:italic;line-height:.9;color:var(--ink);letter-spacing:-.02em;margin-bottom:24px;}
+.ct-h strong{font-weight:900;font-style:normal;color:var(--navy);}
+.ct-p{font-size:14.5px;color:var(--muted);line-height:1.95;max-width:500px;margin-bottom:44px;}
+.ct-cards{display:grid;grid-template-columns:repeat(3,1fr);background:var(--ivory);border:1px solid var(--border);border-top:none;}
+@media(max-width:768px){.ct-cards{grid-template-columns:1fr;}}
+.ct-c{
+  display:flex;align-items:center;gap:16px;padding:32px 24px;
+  border-right:1px solid var(--border);text-decoration:none;color:var(--ink);
+  background:var(--ivory);transition:all .25s;position:relative;overflow:hidden;
+}
+.ct-c:last-child{border-right:none;}
+.ct-c::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--navy),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.16,1,.3,1);}
+.ct-c:hover::after{transform:scaleX(1);}
+.ct-c:hover{background:#fff;}
+.ct-ic{width:44px;height:44px;border:1px solid var(--border);background:var(--ivory2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:all .25s;}
+.ct-c:hover .ct-ic{background:var(--navy);border-color:var(--navy);}
+.ct-cl{font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.ct-cv{font-size:13.5px;color:var(--ink);}
+.ct-loc{background:var(--navy);padding:32px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.ct-li{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(250,248,243,.4);}
+.ct-li strong{color:rgba(250,248,243,.75);font-weight:400;}
+.ct-li-icon{font-size:14px;opacity:.6;}
+
+/* ────────────────────────────────
+   FOOTER
+──────────────────────────────── */
+footer{background:var(--ink);padding:36px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.f-b{font-family:var(--fo);font-size:22px;font-weight:700;font-style:italic;color:var(--ivory);}
+.f-b span{color:var(--gold2);}
+.f-m{font-family:var(--fm);font-size:9px;letter-spacing:.1em;color:rgba(250,248,243,.3);}
+.f-r{font-family:var(--fm);font-size:9px;letter-spacing:.08em;color:rgba(250,248,243,.15);}
+
+/* ────────────────────────────────
+   ANIMATIONS & REVEAL
+──────────────────────────────── */
+@keyframes fu{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:none;}
+.rv.d1{transition-delay:.09s}.rv.d2{transition-delay:.18s}.rv.d3{transition-delay:.27s}
+.rv.d4{transition-delay:.36s}.rv.d5{transition-delay:.45s}
+</style>
+</head>
+<body>
+
+<div id="prg"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="n-logo">ACV<em>.</em></div>
+  <ul class="n-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="n-badge"><div class="n-dot"></div>Open to Work</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-deco-circle"></div>
+  <div class="hero-deco-line"></div>
+  <div class="hero-deco-dot-grid"></div>
+  <div class="hero-watermark">4.5</div>
+
+  <div class="hero-body">
+    <!-- LEFT -->
+    <div class="h-left">
+      <div class="h-tag"><div class="h-tag-line"></div>Cloud &amp; DevOps Engineer · Bengaluru, India</div>
+      <h1 class="h-name">
+        <span class="h-n1">Aswarda</span>
+        <span class="h-n2">Vadlamani</span>
+      </h1>
+      <div class="h-role">Platform Engineering · GitOps · Multi-Cloud Infrastructure</div>
+      <p class="h-desc">Results-driven engineer with 4.5 years of hands-on experience designing, deploying, and automating scalable cloud-native infrastructure across AWS, GCP, and Azure. Specializing in Kubernetes, CI/CD, Crossplane, and GitOps-driven platform engineering.</p>
+
+      <div class="h-kpi">
+        <div class="hk"><span class="hk-n">4.5</span><span class="hk-l">Yrs Exp</span></div>
+        <div class="hk"><span class="hk-n">3</span><span class="hk-l">Clouds</span></div>
+        <div class="hk"><span class="hk-n">20+</span><span class="hk-l">AWS Svcs</span></div>
+        <div class="hk"><span class="hk-n">9.19</span><span class="hk-l">CGPA</span></div>
+      </div>
+
+      <div class="h-cta">
+        <a href="mailto:aswardavadlamani45@gmail.com" class="btn-navy"><span>✉ &nbsp;Hire Me</span></a>
+        <a href="https://www.linkedin.com/in/aswardavadlamani" target="_blank" class="btn-line">↗ &nbsp;LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- RIGHT photo -->
+    <div class="h-right">
+      <div class="h-photo-bg"></div>
+      <div class="h-photo-frame">
+        <img src="data:image/jpeg;base64,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" alt="Aswarda Chari Vadlamani"/>
+        <div class="h-photo-caption">
+          <div class="h-photo-caption-name">Aswarda Chari Vadlamani</div>
+          <div class="h-photo-caption-role">// Cloud &amp; DevOps Engineer</div>
+        </div>
+      </div>
+      <div class="h-exp-badge">
+        <div class="h-exp-n">4.5</div>
+        <div class="h-exp-l">Years of<br>Experience</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="t-track">
+      <span class="ti">AWS</span><span class="ti dot">·</span><span class="ti">GCP</span><span class="ti dot">·</span>
+      <span class="ti">Azure</span><span class="ti dot">·</span><span class="ti">Kubernetes</span><span class="ti dot">·</span>
+      <span class="ti">Crossplane</span><span class="ti dot">·</span><span class="ti">ArgoCD</span><span class="ti dot">·</span>
+      <span class="ti">Terraform</span><span class="ti dot">·</span><span class="ti">Jenkins</span><span class="ti dot">·</span>
+      <span class="ti">Helm</span><span class="ti dot">·</span><span class="ti g">Bazel</span><span class="ti dot">·</span>
+      <span class="ti">Grafana</span><span class="ti dot">·</span><span class="ti">Prometheus</span><span class="ti dot">·</span>
+      <span class="ti">Docker</span><span class="ti dot">·</span><span class="ti">GitOps</span><span class="ti dot">·</span>
+      <span class="ti">DevSecOps</span><span class="ti dot">·</span><span class="ti">Trivy</span><span class="ti dot">·</span>
+      <span class="ti">SonarQube</span><span class="ti dot">·</span><span class="ti r">Snyk</span><span class="ti dot">·</span>
+      <span class="ti">AWS</span><span class="ti dot">·</span><span class="ti">GCP</span><span class="ti dot">·</span>
+      <span class="ti">Azure</span><span class="ti dot">·</span><span class="ti">Kubernetes</span><span class="ti dot">·</span>
+      <span class="ti">Crossplane</span><span class="ti dot">·</span><span class="ti">ArgoCD</span><span class="ti dot">·</span>
+      <span class="ti">Terraform</span><span class="ti dot">·</span><span class="ti">Jenkins</span><span class="ti dot">·</span>
+      <span class="ti">Helm</span><span class="ti dot">·</span><span class="ti g">Bazel</span><span class="ti dot">·</span>
+      <span class="ti">Grafana</span><span class="ti dot">·</span><span class="ti">Prometheus</span><span class="ti dot">·</span>
+      <span class="ti">Docker</span><span class="ti dot">·</span><span class="ti">GitOps</span><span class="ti dot">·</span>
+      <span class="ti">DevSecOps</span><span class="ti dot">·</span><span class="ti">Trivy</span><span class="ti dot">·</span>
+      <span class="ti">SonarQube</span><span class="ti dot">·</span><span class="ti r">Snyk</span><span class="ti dot">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="ab-left">
+    <div class="ab-big">About</div>
+    <div class="ab-num rv">01 / Profile</div>
+    <br><br>
+    <div class="ovl rv d1">Who I Am</div>
+    <h2 class="sec-title rv d2">The<br><em>Engineer</em><br>Behind It</h2>
+  </div>
+  <div>
+    <div class="ab-quote rv d1">"I architect infrastructure that scales, automates itself, and stays secure — so teams can ship faster without breaking things."</div>
+    <p class="ab-body rv d2">I'm a Cloud &amp; DevOps Engineer with 4.5 years of experience helping organizations build production-grade, cloud-native platforms. At Deloitte, I lead platform engineering efforts — designing Crossplane-based self-service infrastructure, GitOps pipelines, and Kubernetes-native CI/CD systems that serve multiple customer teams simultaneously.</p>
+    <p class="ab-body rv d3">Previously at Log-UsIMS Technologies, I managed full-stack cloud operations across AWS and GCP — from VPC architecture to container orchestration to real-time observability. I bring a builder's mindset to every problem: automate the toil, enforce the standards, and make the platform a product.</p>
+    <div class="ab-chips rv d4">
+      <span class="ac">Platform Engineering</span><span class="ac">Cloud-Native</span>
+      <span class="ac">Kubernetes</span><span class="ac">GitOps</span>
+      <span class="ac">Infrastructure as Code</span><span class="ac">DevSecOps</span>
+      <span class="ac">Multi-Cloud</span><span class="ac">Automation</span>
+      <span class="ac">Bazel Build Tools</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sk-header">
+    <div><div class="ovl">02 / Technical Arsenal</div><h2 class="sec-title">Skills &amp; <em>Technologies</em></h2></div>
+    <div class="sk-count">07</div>
+  </div>
+  <div class="sk-grid">
+
+    <div class="sk rv d1">
+      <div class="sk-num">01</div>
+      <div class="sk-title">Cloud Platforms</div>
+      <p class="sk-desc">Multi-cloud expertise spanning AWS, GCP, and Azure with deep operational experience managing scalable, fault-tolerant infrastructure at enterprise scale.</p>
+      <div class="sk-chips"><span class="sc">AWS</span><span class="sc">GCP</span><span class="sc">Azure</span><span class="sc">EC2</span><span class="sc">EKS</span><span class="sc">GKE</span><span class="sc">AKS</span><span class="sc">VPC</span><span class="sc">RDS</span><span class="sc">S3</span><span class="sc">IAM</span><span class="sc">CloudFront</span><span class="sc">Route 53</span><span class="sc">Cloud SQL</span></div>
+    </div>
+
+    <div class="sk rv d2">
+      <div class="sk-num">02</div>
+      <div class="sk-title">CI/CD &amp; GitOps</div>
+      <p class="sk-desc">End-to-end CI/CD pipelines using Jenkins on Kubernetes, GitHub Actions, ArgoCD, and Flux — driven by GitOps principles with drift detection and auto-healing.</p>
+      <div class="sk-chips"><span class="sc">Jenkins</span><span class="sc">ArgoCD</span><span class="sc">GitHub Actions</span><span class="sc">Flux CD</span><span class="sc">AWS CodePipeline</span><span class="sc">Azure DevOps</span><span class="sc">Bitbucket</span></div>
+    </div>
+
+    <div class="sk rv d3">
+      <div class="sk-num">03</div>
+      <div class="sk-title">Infrastructure as Code</div>
+      <p class="sk-desc">Composable, reusable infrastructure abstractions using Crossplane XRDs, Terraform modules, and Ansible playbooks across multi-cloud environments.</p>
+      <div class="sk-chips"><span class="sc">Crossplane</span><span class="sc">Terraform</span><span class="sc">Ansible</span><span class="sc">XRDs</span><span class="sc">Compositions</span><span class="sc">OPA</span><span class="sc">Managed Resources</span></div>
+    </div>
+
+    <div class="sk rv d1">
+      <div class="sk-num">04</div>
+      <div class="sk-title">Containers &amp; Kubernetes</div>
+      <p class="sk-desc">Deep Kubernetes expertise — RBAC, dynamic Jenkins agents via PodTemplates, namespace management, Helm chart authoring, and container-native CI/CD workflows.</p>
+      <div class="sk-chips"><span class="sc">Kubernetes</span><span class="sc">Docker</span><span class="sc">Helm</span><span class="sc">ECS</span><span class="sc">ECR</span><span class="sc">ACR</span><span class="sc">RBAC</span><span class="sc">PodTemplates</span></div>
+    </div>
+
+    <div class="sk rv d2">
+      <div class="sk-num">05</div>
+      <div class="sk-title">DevSecOps &amp; Observability</div>
+      <p class="sk-desc">Security scanning and real-time observability embedded into every pipeline — from code commit to production, nothing ships without passing security gates.</p>
+      <div class="sk-chips"><span class="sc">Trivy</span><span class="sc">SonarQube</span><span class="sc">Snyk</span><span class="sc">Grafana</span><span class="sc">Prometheus</span><span class="sc">Nagios</span><span class="sc">CloudWatch</span></div>
+    </div>
+
+    <div class="sk rv d3">
+      <div class="sk-num">06</div>
+      <div class="sk-title">Scripting &amp; Linux</div>
+      <p class="sk-desc">Linux administration, shell scripting for automation, Python scripting, and extensive experience with Red Hat, CentOS, and Ubuntu enterprise deployments.</p>
+      <div class="sk-chips"><span class="sc">Shell Script</span><span class="sc">Python</span><span class="sc">Go</span><span class="sc">Linux (RHEL)</span><span class="sc">Ubuntu</span><span class="sc">Bash</span><span class="sc">Cron</span></div>
+    </div>
+
+    <div class="sk rv d1">
+      <div class="sk-new">New</div>
+      <div class="sk-num">07</div>
+      <div class="sk-title">Bazel Build Tools</div>
+      <p class="sk-desc">Fast, reproducible, and hermetic builds across polyglot monorepos. Optimizing pipelines with remote caching, distributed execution, and dependency graph management for large-scale engineering teams.</p>
+      <div class="sk-chips"><span class="sc">Bazel</span><span class="sc">BUILD files</span><span class="sc">Remote Cache</span><span class="sc">Remote Exec</span><span class="sc">Gazelle</span><span class="sc">Starlark</span><span class="sc">Monorepo</span><span class="sc">RBE</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="ex-hd">
+    <div class="ovl" style="color:var(--gold3);">03 / Career Journey</div>
+    <h2 class="sec-title light">Work <em>Experience</em></h2>
+  </div>
+  <div class="ex-cards">
+    <div class="ex-c rv d1">
+      <div class="ex-badge eb-g"><span class="eb-dot"></span>Current Role</div>
+      <div class="ex-per">2024 Nov — Present &nbsp;·&nbsp; 1.6 Years</div>
+      <div class="ex-title">CaaS Engineer</div>
+      <div class="ex-co">Deloitte Shared Services India LLP</div>
+      <ul class="ex-ul">
+        <li>Designed and developed Crossplane XRDs and Compositions for reusable, product-grade infrastructure abstractions used across multiple customer teams</li>
+        <li>Set up centralized Crossplane control plane with RBAC, multi-tenancy, and full GitOps workflows via Flux/ArgoCD</li>
+        <li>Implemented end-to-end GitOps Continuous Delivery integrating Flux/ArgoCD with Crossplane managed resources</li>
+        <li>Automated cloud resource provisioning (AWS, GCP) via Crossplane Managed Resources and Compositions</li>
+        <li>Architected highly available Jenkins-on-Kubernetes CI/CD with dynamic PodTemplate agents — eliminating idle compute costs</li>
+        <li>Integrated DevSecOps tooling — Trivy, SonarQube, Snyk — enforcing security gates before production deployment</li>
+      </ul>
+    </div>
+    <div class="ex-c rv d2">
+      <div class="ex-badge eb-a"><span class="eb-dot"></span>Previous Role</div>
+      <div class="ex-per">2022 Jan — 2024 Nov &nbsp;·&nbsp; 2.9 Years</div>
+      <div class="ex-title">DevOps Engineer</div>
+      <div class="ex-co">Log-UsIMS Technologies Pvt. Ltd.</div>
+      <ul class="ex-ul">
+        <li>Designed and maintained Jenkins CI/CD pipelines for Java/Tomcat, Golang, and Docker-based microservice applications</li>
+        <li>Implemented GitOps deployments using ArgoCD with auto-sync, self-heal, and prune policies for zero-drift deployments</li>
+        <li>Managed full AWS infrastructure stack: VPC, EC2, ECS, RDS, S3, IAM, CloudFront, Route53, and more</li>
+        <li>Developed reusable Terraform modules for AWS and GCP infrastructure automation and compliance enforcement</li>
+        <li>Configured comprehensive monitoring and alerting using Grafana, Prometheus, and Nagios across production environments</li>
+        <li>Managed Google Cloud: GKE, Compute Engine, Cloud SQL, App Engine, and CloudArmor security policies</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <div class="hl-hd">
+    <div><div class="ovl">04 / Key Achievements</div><h2 class="sec-title">Notable <em>Highlights</em></h2></div>
+    <p class="hl-desc">Six standout projects and achievements that define the breadth and depth of engineering impact — from platform architecture to academic excellence.</p>
+  </div>
+  <div class="hl-list">
+    <div class="hl-row rv d1"><div class="hl-i">01</div><div class="hl-m"><div class="hl-t">Crossplane Platform Engineering</div><div class="hl-s">Deloitte · Infrastructure Abstraction</div></div><div class="hl-dc">Built reusable XRD-based infrastructure abstractions enabling self-service cloud provisioning — reducing provisioning time from days to minutes.</div><div class="hl-ic">🏗️</div></div>
+    <div class="hl-row rv d2"><div class="hl-i">02</div><div class="hl-m"><div class="hl-t">Jenkins-on-Kubernetes CI/CD</div><div class="hl-s">Deloitte · Platform Scaling</div></div><div class="hl-dc">Horizontally scalable Jenkins with dynamic K8s agent pods — eliminating idle compute costs and improving build isolation across teams.</div><div class="hl-ic">🚀</div></div>
+    <div class="hl-row rv d3"><div class="hl-i">03</div><div class="hl-m"><div class="hl-t">Multi-Cloud GitOps Pipelines</div><div class="hl-s">Deloitte · AWS · GCP · Azure</div></div><div class="hl-dc">End-to-end GitOps pipelines via ArgoCD and Flux across all three major clouds with drift detection and auto-reconciliation.</div><div class="hl-ic">🌐</div></div>
+    <div class="hl-row rv d4"><div class="hl-i">04</div><div class="hl-m"><div class="hl-t">DevSecOps Gate Integration</div><div class="hl-s">Deloitte · Security Automation</div></div><div class="hl-dc">Trivy, SonarQube, and Snyk embedded into every CI pipeline — zero workloads reaching production without passing security scans.</div><div class="hl-ic">🛡️</div></div>
+    <div class="hl-row rv d5"><div class="hl-i">05</div><div class="hl-m"><div class="hl-t">Academic Excellence — 9.19 CGPA</div><div class="hl-s">ANU University · BSc · 2019</div></div><div class="hl-dc">Graduated with distinction from Acharya Nagarjuna University — strong theoretical foundation complementing hands-on cloud engineering experience.</div><div class="hl-ic">🎓</div></div>
+    <div class="hl-row rv d1"><div class="hl-i">06</div><div class="hl-m"><div class="hl-t">Full-Stack Cloud Operations</div><div class="hl-s">Log-UsIMS · L2/L3 Support</div></div><div class="hl-dc">Delivered L2/L3 support, SOP development, 24/7 on-call coverage, and infrastructure monitoring across Linux and AWS production environments.</div><div class="hl-ic">⚙️</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-hero">
+    <div class="ct-bg">Connect</div>
+    <div class="ct-inner">
+      <div class="ct-pill"><span class="ct-pill-dot"></span>Available for New Opportunities</div>
+      <div class="ct-h">Let's Build<br><strong>Something</strong><br>Great Together.</div>
+      <p class="ct-p">Open to Cloud / DevOps / Platform Engineering roles. Looking for teams building Kubernetes-native infrastructure, GitOps platforms, and scalable multi-cloud systems. Let's talk.</p>
+      <a href="mailto:aswardavadlamani45@gmail.com" class="btn-navy"><span>✉ &nbsp;Send a Message</span></a>
+    </div>
+  </div>
+  <div class="ct-cards">
+    <a href="mailto:aswardavadlamani45@gmail.com" class="ct-c"><div class="ct-ic">✉</div><div><div class="ct-cl">Email</div><div class="ct-cv">aswardavadlamani45@gmail.com</div></div></a>
+    <a href="tel:+919014008541" class="ct-c"><div class="ct-ic">📞</div><div><div class="ct-cl">Phone</div><div class="ct-cv">+91 9014008541</div></div></a>
+    <a href="https://www.linkedin.com/in/aswardavadlamani" target="_blank" class="ct-c"><div class="ct-ic">↗</div><div><div class="ct-cl">LinkedIn</div><div class="ct-cv">linkedin.com/in/aswardavadlamani</div></div></a>
+  </div>
+  <div class="ct-loc">
+    <div class="ct-li"><span class="ct-li-icon">📍</span><strong>Bengaluru, India</strong></div>
+    <div class="ct-li"><span class="ct-li-icon">🌐</span>Remote &amp; Hybrid</div>
+    <div class="ct-li"><span class="ct-li-icon">🗣</span>English · Telugu · Hindi</div>
+    <div class="ct-li"><span class="ct-li-icon">🎓</span>BSc — ANU · <strong>9.19 CGPA</strong></div>
+    <div class="ct-li"><span class="ct-li-icon">💼</span><strong>4.5 Years</strong> Experience</div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-b">ACV<span>.</span></div>
+  <div class="f-m">© 2025 Aswarda Chari Vadlamani · Cloud &amp; DevOps Engineer</div>
+  <div class="f-r">Built with HTML · GitHub Pages</div>
+</footer>
+
+<script>
+/* Progress */
+const prg=document.getElementById("prg");
+window.addEventListener("scroll",()=>{prg.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+"%";},{passive:true});
+/* Nav shadow */
+const nav=document.getElementById("nav");
+window.addEventListener("scroll",()=>nav.classList.toggle("s",window.scrollY>20),{passive:true});
+/* Active nav */
+const secs=document.querySelectorAll("section[id]"),lks=document.querySelectorAll(".n-links a");
+window.addEventListener("scroll",()=>{let c="";secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)c=s.id;});lks.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+c));},{passive:true});
+/* Reveal */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.07,rootMargin:"0px 0px -28px 0px"});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll(".rv:not(.in)").forEach(el=>el.classList.add("in")),2200);
+/* Skill spotlight */
+document.querySelectorAll(".sk").forEach(c=>{c.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect();c.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");c.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%");});});
+</script>
+</body>
+</html>
